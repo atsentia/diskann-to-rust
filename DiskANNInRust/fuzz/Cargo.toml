@@ -1,0 +1,48 @@
+[package]
+name = "diskann-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+arbitrary = { version = "1.0", features = ["derive"] }
+
+[dependencies.diskann-core]
+path = "../diskann-core"
+
+[dependencies.diskann-io]
+path = "../diskann-io"
+
+[dependencies.diskann-impl]
+path = "../diskann-impl"
+
+[dependencies.diskann-traits]
+path = "../diskann-traits"
+
+# File parser fuzzing
+[[bin]]
+name = "fuzz_file_parser"
+path = "fuzz_targets/fuzz_file_parser.rs"
+test = false
+doc = false
+bench = false
+
+# Search query fuzzing
+[[bin]]
+name = "fuzz_search_query"
+path = "fuzz_targets/fuzz_search_query.rs"
+test = false
+doc = false
+bench = false
+
+# Vector operations fuzzing
+[[bin]]
+name = "fuzz_vector_ops"
+path = "fuzz_targets/fuzz_vector_ops.rs"
+test = false
+doc = false
+bench = false
