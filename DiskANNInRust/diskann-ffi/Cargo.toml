@@ -1,0 +1,28 @@
+[package]
+name = "diskann-ffi"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "C Foreign Function Interface for DiskANN vector search library"
+
+[lib]
+name = "diskann_ffi"
+crate-type = ["cdylib", "staticlib"]
+
+[features]
+default = []
+simd = ["diskann-core/simd", "diskann-io/simd", "diskann-traits/simd", "diskann-impl/simd"]
+unsafe_opt = ["diskann-core/unsafe_opt", "diskann-io/unsafe_opt", "diskann-traits/unsafe_opt", "diskann-impl/unsafe_opt"]
+
+[dependencies]
+diskann-core = { path = "../diskann-core" }
+diskann-io = { path = "../diskann-io" }
+diskann-traits = { path = "../diskann-traits" }
+diskann-impl = { path = "../diskann-impl" }
+libc = "0.2"

@@ -1,0 +1,31 @@
+[package]
+name = "diskann-bench"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Performance benchmarks for DiskANN vector search"
+
+[features]
+default = []
+simd = ["diskann-core/simd", "diskann-impl/simd"]
+unsafe_opt = ["diskann-core/unsafe_opt", "diskann-impl/unsafe_opt"]
+
+[dependencies]
+diskann-core = { path = "../diskann-core" }
+diskann-traits = { path = "../diskann-traits" }
+diskann-impl = { path = "../diskann-impl" }
+criterion.workspace = true
+rand.workspace = true
+rayon.workspace = true
+anyhow.workspace = true
+
+[[bench]]
+name = "search_benchmarks"
+harness = false
+required-features = []
