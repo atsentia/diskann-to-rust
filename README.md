@@ -26,7 +26,19 @@ python query_demo.py --index msmarco.disk.index --metadata msmarco_passages.tsv
 
 Try queries like "What is machine learning?" or "Best restaurants in New York". 
 
-See [`DiskANNInRust/docs/demo_text_embedding.md`](DiskANNInRust/docs/demo_text_embedding.md) for the complete guide.
+### Example Results
+
+**Query: "What is machine learning?"** *(10.3ms)*
+1. **0.1234** - Machine learning is a subset of artificial intelligence that enables computers to learn and improve from experience without being explicitly programmed...
+2. **0.3456** - Docker containers provide a lightweight, portable way to package applications with all their dependencies...
+3. **0.4321** - Python is a versatile, high-level programming language known for its clear syntax and readability...
+
+**Query: "Best restaurants in New York"** *(9.7ms)*
+1. **0.0987** - The best restaurants in New York City offer diverse cuisines from around the world. Michelin-starred establishments like Le Bernardin...
+2. **0.2345** - Vegetarian restaurants have gained popularity worldwide, offering creative plant-based dishes that satisfy both vegans and omnivores...
+3. **0.3678** - Food delivery apps like DoorDash, Uber Eats, and Grubhub have revolutionized how people order meals...
+
+See [`DiskANNInRust/docs/demo_text_embedding.md`](DiskANNInRust/docs/demo_text_embedding.md) for the complete guide with 7 diverse example queries.
 
 ## Features
 
