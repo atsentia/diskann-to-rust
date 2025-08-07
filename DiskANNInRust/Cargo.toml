@@ -8,6 +8,7 @@ members = [
     "diskann-cli",
     "diskann-ffi",
     "diskann-bench",
+    "diskann-demo",
 ]
 exclude = [
     "fuzz",

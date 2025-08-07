@@ -1,0 +1,180 @@
+   Compiling diskann-demo v0.1.0 (/Users/amund/diskann-to-rust/DiskANNInRust/diskann-demo)
+warning: unused import: `Context`
+ --> diskann-demo/src/dataset.rs:3:22
+  |
+3 | use anyhow::{Result, Context};
+  |                      ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `Write`
+ --> diskann-demo/src/dataset.rs:7:26
+  |
+7 | use std::io::{BufReader, Write};
+  |                          ^^^^^
+
+warning: unused import: `PathBuf`
+ --> diskann-demo/src/model.rs:6:23
+  |
+6 | use std::path::{Path, PathBuf};
+  |                       ^^^^^^^
+
+warning: unused import: `EuclideanDistance`
+  --> diskann-demo/src/demo.rs:11:33
+   |
+11 | use diskann_traits::{distance::{EuclideanDistance, CosineDistance}, index::Index, search::Search};
+   |                                 ^^^^^^^^^^^^^^^^^
+
+warning: field `entries` is never read
+  --> diskann-demo/src/dataset.rs:23:9
+   |
+20 | pub struct STSBDataset {
+   |            ----------- field in this struct
+...
+23 |     pub entries: Vec<STSBEntry>,
+   |         ^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: associated function `create_fallback_dataset` is never used
+   --> diskann-demo/src/dataset.rs:176:8
+    |
+26  | impl STSBDataset {
+    | ---------------- associated function in this implementation
+...
+176 |     fn create_fallback_dataset() -> Vec<STSBEntry> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method `dimension` is never used
+   --> diskann-demo/src/embeddings.rs:153:12
+    |
+17  | impl EmbeddingsGenerator {
+    | ------------------------ method in this implementation
+...
+153 |     pub fn dimension(&self) -> usize {
+    |            ^^^^^^^^^
+
+warning: method `dimension` is never used
+   --> diskann-demo/src/model.rs:277:12
+    |
+27  | impl RealEmbeddingModel {
+    | ----------------------- method in this implementation
+...
+277 |     pub fn dimension(&self) -> usize {
+    |            ^^^^^^^^^
+
+warning: unused `Result` that must be used
+  --> diskann-demo/src/model.rs:67:9
+   |
+67 | /         tokenizer.with_truncation(Some(TruncationParams {
+68 | |             max_length: 256,
+69 | |             ..Default::default()
+70 | |         }));
+   | |___________^
+   |
+   = note: this `Result` may be an `Err` variant, which should be handled
+   = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+   |
+67 |         let _ = tokenizer.with_truncation(Some(TruncationParams {
+   |         +++++++
+
+warning: `diskann-demo` (bin "diskann-demo") generated 9 warnings (run `cargo fix --bin "diskann-demo"` to apply 4 suggestions)
+    Finished `release` profile [optimized] target(s) in 3.37s
+     Running `/Users/amund/diskann-to-rust/DiskANNInRust/target/release/diskann-demo full`
+============================================================
+DiskANN Pure Rust Demo - STSB Semantic Search
+============================================================
+
+Step 1: Loading STSB Dataset
+📥 Downloading STSB dataset from HuggingFace...
+📊 Extending dataset from 81 to 1000 sentences for indexing
+📊 Dataset loaded:
+   - 1000 sentences for indexing
+   - 20 sentences for queries
+   - 150 total pairs in dataset
+
+Step 2: Generating Embeddings
+Initializing real embedding model (all-MiniLM-L6-v2)...
+Checking for model files...
+Downloading model.onnx...
+  Downloading from: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/onnx/model.onnx
+Downloading tokenizer.json...
+  Downloading from: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer.json
+Downloading tokenizer_config.json...
+  Downloading from: https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json
+Loading ONNX model from ".diskann_cache/all-MiniLM-L6-v2/model.onnx"...
+Loading tokenizer from ".diskann_cache/all-MiniLM-L6-v2/tokenizer.json"...
+✓ Using real all-MiniLM-L6-v2 model
+
+Step 3: Building Vamana Index
+✓ Index built in 234.23s
+  - Nodes: 1000
+  - Average degree: 18.68
+
+Step 4: Running Benchmark Queries
+Initializing real embedding model (all-MiniLM-L6-v2)...
+Checking for model files...
+✓ model.onnx already exists
+✓ tokenizer.json already exists
+✓ tokenizer_config.json already exists
+Loading ONNX model from ".diskann_cache/all-MiniLM-L6-v2/model.onnx"...
+Loading tokenizer from ".diskann_cache/all-MiniLM-L6-v2/tokenizer.json"...
+Using real model for queries
+
+Query 1: "Cooking at home saves money"
+Search time: 1.29ms
+Results:
+  1. [Similarity: -0.066] Actually, the acquisition finished smoothly
+  2. [Similarity: -0.066] Indeed, the match ended in a draw
+  3. [Similarity: -0.066] Indeed, the match ended in a draw
+  4. [Similarity: -0.068] The patient recovered quickly.
+  5. [Similarity: -0.068] The patient recovered quickly.
+
+Query 2: "The garden blooms in spring"
+Search time: 1.15ms
+Results:
+  1. [Similarity: -0.035] Artificial intelligence is transforming industries again
+  2. [Similarity: -0.035] The computer processes data quickly.
+  3. [Similarity: -0.035] The computer processes data quickly.
+  4. [Similarity: -0.035] The computer processes data quickly.
+  5. [Similarity: -0.036] The machine computes information rapidly
+
+Query 3: "The academic article was released"
+Search time: 1.11ms
+Results:
+  1. [Similarity: -0.017] The river flows through the valley too
+  2. [Similarity: -0.017] The river flows through the valley too
+  3. [Similarity: -0.017] The woods contain many animals
+  4. [Similarity: -0.018] Actually, fans cheered for their favorite team
+  5. [Similarity: -0.018] Actually, fans cheered for their favorite team
+
+Query 4: "Online learning is becoming popular"
+Search time: 1.13ms
+Results:
+  1. [Similarity: -0.026] The squad claimed the title again
+  2. [Similarity: -0.028] The doctor prescribed medication again
+  3. [Similarity: -0.028] The doctor prescribed medication again
+  4. [Similarity: -0.028] The doctor prescribed medication again
+  5. [Similarity: -0.028] Flowers blossom in the warmer season.
+
+Query 5: "Scientists discovered a new planet"
+Search time: 1.10ms
+Results:
+  1. [Similarity: -0.036] The train arrived on schedule again
+  2. [Similarity: -0.036] The train arrived on schedule again
+  3. [Similarity: -0.038] Making food yourself reduces costs too
+  4. [Similarity: -0.038] Making food yourself reduces costs too
+  5. [Similarity: -0.039] Actually, traffic is heavy during rush hour
+
+
+============================================================
+Demo Statistics
+============================================================
+Dataset size: 1000 sentences
+Embedding dimensions: 384
+Index build time: 234.23s
+Index parameters:
+  - Max degree (R): 32
+  - Search list size (L): 64
+  - Alpha: 1.2
