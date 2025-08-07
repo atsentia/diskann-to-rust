@@ -13,31 +13,32 @@
 //! ## Basic Usage
 //! 
 //! ```rust
-//! use diskann_core::math::{euclidean_distance, normalize};
+//! use diskann_core::math::{dot_product, normalize};
 //! 
-//! // Calculate distance between two vectors
+//! // Calculate dot product between two vectors
 //! let a = [1.0, 2.0, 3.0];
 //! let b = [4.0, 5.0, 6.0];
-//! let distance = euclidean_distance(&a, &b);
+//! let dot = dot_product(&a, &b);
 //! 
 //! // Normalize a vector to unit length
-//! let mut vector = [3.0, 4.0, 0.0];
+//! let mut vector = [3.0f32, 4.0f32, 0.0f32];
 //! normalize(&mut vector);
-//! assert!((vector[0] * vector[0] + vector[1] * vector[1] - 1.0).abs() < 1e-6);
+//! let norm_squared = vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2];
+//! assert!((norm_squared - 1.0f32).abs() < 1e-6);
 //! ```
 //! 
 //! ## SIMD Optimization Example
 //! 
 //! ```rust
 //! # fn main() -> Result<(), Box<dyn std::error::Error>> {
-//! use diskann_core::math::euclidean_distance;
+//! use diskann_core::math::dot_product;
 //! 
 //! // Standard usage automatically selects SIMD when available
 //! let query = vec![1.0; 128];
 //! let candidate = vec![2.0; 128];
 //! 
-//! let distance = euclidean_distance(&query, &candidate);
-//! println!("Distance: {}", distance);
+//! let dot = dot_product(&query, &candidate);
+//! println!("Dot product: {}", dot);
 //! # Ok(())
 //! # }
 //! ```

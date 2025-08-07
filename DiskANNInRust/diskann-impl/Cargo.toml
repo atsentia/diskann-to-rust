@@ -17,6 +17,13 @@ simd = ["diskann-core/simd", "diskann-io/simd", "diskann-traits/simd"]
 unsafe_opt = ["diskann-core/unsafe_opt", "diskann-io/unsafe_opt", "diskann-traits/unsafe_opt"]
 wasm = ["diskann-core/wasm", "diskann-io/wasm", "diskann-traits/wasm"]
 
+# New performance features for Task 8
+# Enable high-performance optimizations with ≥10% speed improvements
+performance = ["simd", "unsafe_opt"]
+# Memory allocator optimizations
+jemalloc = ["dep:jemallocator"]
+mimalloc = ["dep:mimalloc"]
+
 [dependencies]
 diskann-core = { path = "../diskann-core" }
 diskann-io = { path = "../diskann-io" }
@@ -27,6 +34,13 @@ anyhow.workspace = true
 tracing.workspace = true
 rayon = "1.8"
 rand = "0.8"
+
+# Optional performance dependencies
+jemallocator = { version = "0.5", optional = true }
+mimalloc = { version = "0.1", optional = true }
+
+# Optional instrumentation dependencies  
+metrics = { version = "0.21", optional = true }
 
 [dev-dependencies]
 criterion.workspace = true
