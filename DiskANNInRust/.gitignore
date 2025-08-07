@@ -43,3 +43,6 @@ criterion/
 /examples/test_output/
 /examples/test_data/
 /examples/__pycache__/
+
+# Demo cache directory
+.diskann_cache/

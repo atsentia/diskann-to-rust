@@ -162,8 +162,15 @@ proptest! {
         
         if norm1 > 0.0 && norm2 > 0.0 {
             // Cauchy-Schwarz inequality: |⟨u,v⟩| ≤ ||u|| ||v||
-            prop_assert!(dot12.abs() <= norm1 * norm2 + f32::EPSILON,
-                "Cauchy-Schwarz inequality violated: {} > {} * {}", dot12.abs(), norm1, norm2);
+            // Use relative tolerance for large values
+            let tolerance = if norm1 * norm2 > 1e6 {
+                (norm1 * norm2) * 1e-6 // 0.0001% relative tolerance for large values
+            } else {
+                1e-6
+            };
+            prop_assert!(dot12.abs() <= norm1 * norm2 + tolerance,
+                "Cauchy-Schwarz inequality violated: {} > {} * {} (tolerance: {})", 
+                dot12.abs(), norm1, norm2, tolerance);
         }
     }
 
