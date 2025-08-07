@@ -1,0 +1,36 @@
+[package]
+name = "diskann-impl"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Concrete implementations of DiskANN algorithms and data structures"
+
+[features]
+default = []
+simd = ["diskann-core/simd", "diskann-io/simd", "diskann-traits/simd"]
+unsafe_opt = ["diskann-core/unsafe_opt", "diskann-io/unsafe_opt", "diskann-traits/unsafe_opt"]
+wasm = ["diskann-core/wasm", "diskann-io/wasm", "diskann-traits/wasm"]
+
+[dependencies]
+diskann-core = { path = "../diskann-core" }
+diskann-io = { path = "../diskann-io" }
+diskann-traits = { path = "../diskann-traits" }
+serde.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+criterion.workspace = true
+rstest.workspace = true
+
+[[bench]]
+name = "impl_benchmarks"
+harness = false
+required-features = []

@@ -1,0 +1,35 @@
+[package]
+name = "diskann-io"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "I/O operations and file format handling for DiskANN"
+
+[features]
+default = []
+simd = ["diskann-core/simd"]
+unsafe_opt = ["diskann-core/unsafe_opt"]
+wasm = ["diskann-core/wasm"]
+
+[dependencies]
+diskann-core = { path = "../diskann-core" }
+diskann-traits = { path = "../diskann-traits" }
+serde.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+criterion.workspace = true
+rstest.workspace = true
+
+[[bench]]
+name = "io_benchmarks"
+harness = false
+required-features = []
