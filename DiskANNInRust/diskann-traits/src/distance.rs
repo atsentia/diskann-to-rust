@@ -52,12 +52,20 @@ impl SquaredDistance<f32> for EuclideanDistance {
             return f32::INFINITY;
         }
         
-        let mut sum = 0.0f32;
-        for (x, y) in a.iter().zip(b.iter()) {
-            let diff = x - y;
-            sum += diff * diff;
+        #[cfg(feature = "simd")]
+        {
+            return diskann_core::simd::l2_squared_distance_dispatch(a, b);
         }
-        sum
+        
+        #[cfg(not(feature = "simd"))]
+        {
+            let mut sum = 0.0f32;
+            for (x, y) in a.iter().zip(b.iter()) {
+                let diff = x - y;
+                sum += diff * diff;
+            }
+            sum
+        }
     }
 }
 
@@ -197,6 +205,67 @@ impl Distance<f64> for CosineDistance {
     
     fn is_metric(&self) -> bool {
         false // Cosine distance doesn't satisfy triangle inequality
+    }
+}
+
+/// Inner Product distance implementation
+/// 
+/// Computes 1.0 - dot_product(a, b) where vectors are assumed to be normalized.
+/// For normalized vectors, this is equivalent to half the squared Euclidean distance.
+#[derive(Debug, Clone, Copy, Default)]
+pub struct InnerProductDistance;
+
+impl Distance<f32> for InnerProductDistance {
+    fn distance(&self, a: &[f32], b: &[f32]) -> f32 {
+        if a.len() != b.len() {
+            return f32::INFINITY;
+        }
+        
+        if a.is_empty() {
+            return 0.0;
+        }
+        
+        #[cfg(feature = "simd")]
+        {
+            return diskann_core::simd::inner_product_distance_dispatch(a, b);
+        }
+        
+        #[cfg(not(feature = "simd"))]
+        {
+            let dot = dot_product(a, b);
+            1.0 - dot
+        }
+    }
+    
+    fn name(&self) -> &'static str {
+        "inner_product"
+    }
+    
+    fn is_metric(&self) -> bool {
+        false // Inner product distance doesn't satisfy triangle inequality for arbitrary vectors
+    }
+}
+
+impl Distance<f64> for InnerProductDistance {
+    fn distance(&self, a: &[f64], b: &[f64]) -> f32 {
+        if a.len() != b.len() {
+            return f32::INFINITY;
+        }
+        
+        if a.is_empty() {
+            return 0.0;
+        }
+        
+        let dot = dot_product(a, b);
+        (1.0 - dot) as f32
+    }
+    
+    fn name(&self) -> &'static str {
+        "inner_product"
+    }
+    
+    fn is_metric(&self) -> bool {
+        false // Inner product distance doesn't satisfy triangle inequality for arbitrary vectors
     }
 }
 
@@ -403,6 +472,51 @@ mod tests {
         
         // Parallel vectors should have cosine distance of 0
         let parallel_distance = cosine.distance(&a, &a);
+        assert!(parallel_distance < 1e-6);
+    }
+
+    #[test]
+    fn test_inner_product_distance_f32() {
+        let inner_product = InnerProductDistance;
+        
+        // Normalized vectors for proper inner product distance
+        let a = vec![1.0f32, 0.0];  // already normalized
+        let b = vec![0.0f32, 1.0];  // already normalized
+        let c = vec![0.707f32, 0.707f32];  // approximately normalized
+        
+        // Perpendicular unit vectors should have inner product distance of 1
+        let distance = inner_product.distance(&a, &b);
+        assert!((distance - 1.0).abs() < 1e-6);
+        
+        // Parallel unit vectors should have inner product distance of 0
+        let parallel_distance = inner_product.distance(&a, &a);
+        assert!(parallel_distance < 1e-6);
+        
+        // Test diagonal unit vector
+        let diagonal_distance = inner_product.distance(&a, &c);
+        let expected = 1.0 - 0.707f32; // 1 - dot product
+        assert!((diagonal_distance - expected).abs() < 1e-3);
+        
+        // Test properties
+        let d_ab = inner_product.distance(&a, &b);
+        let d_ba = inner_product.distance(&b, &a);
+        assert!((d_ab - d_ba).abs() < 1e-6, "Should be symmetric");
+        assert!(d_ab >= 0.0, "Should be non-negative");
+    }
+
+    #[test]
+    fn test_inner_product_distance_f64() {
+        let inner_product = InnerProductDistance;
+        
+        let a = vec![1.0f64, 0.0];
+        let b = vec![0.0f64, 1.0];
+        
+        // Perpendicular unit vectors should have inner product distance of 1
+        let distance = inner_product.distance(&a, &b);
+        assert!((distance - 1.0).abs() < 1e-6);
+        
+        // Parallel unit vectors should have inner product distance of 0
+        let parallel_distance = inner_product.distance(&a, &a);
         assert!(parallel_distance < 1e-6);
     }
 

@@ -4,7 +4,7 @@ use diskann_core::{
     utils::{round_up, round_down, is_aligned, next_power_of_2, popcount},
     aligned_vec,
 };
-use diskann_traits::distance::{Distance, EuclideanDistance, ManhattanDistance, CosineDistance};
+use diskann_traits::distance::{Distance, EuclideanDistance, ManhattanDistance, CosineDistance, InnerProductDistance};
 
 fn benchmark_math_functions(c: &mut Criterion) {
     let vector_small = vec![1.0f32; 128];
@@ -45,6 +45,7 @@ fn benchmark_distance_functions(c: &mut Criterion) {
     let euclidean = EuclideanDistance;
     let manhattan = ManhattanDistance;
     let cosine = CosineDistance;
+    let inner_product = InnerProductDistance;
     
     let vector_a = (0..512).map(|i| i as f32 * 0.1).collect::<Vec<f32>>();
     let vector_b = (0..512).map(|i| (i as f32 * 0.1) + 0.5).collect::<Vec<f32>>();
@@ -59,6 +60,10 @@ fn benchmark_distance_functions(c: &mut Criterion) {
     
     c.bench_function("cosine_distance_512", |b| {
         b.iter(|| cosine.distance(black_box(&vector_a), black_box(&vector_b)))
+    });
+    
+    c.bench_function("inner_product_distance_512", |b| {
+        b.iter(|| inner_product.distance(black_box(&vector_a), black_box(&vector_b)))
     });
 }
 
@@ -126,11 +131,87 @@ fn benchmark_aligned_allocation(c: &mut Criterion) {
     });
 }
 
+#[cfg(feature = "simd")]
+fn benchmark_simd_functions(c: &mut Criterion) {
+    use diskann_core::simd::{
+        l2_squared_distance_scalar, l2_squared_distance_dispatch,
+        inner_product_distance_scalar, inner_product_distance_dispatch,
+        l2_squared_distance_simd, inner_product_distance_simd,
+    };
+    
+    // Test different vector sizes to see SIMD effectiveness
+    let sizes = [64, 128, 256, 512, 1024];
+    
+    for &size in &sizes {
+        let vector_a: Vec<f32> = (0..size).map(|i| (i as f32 * 0.1).sin()).collect();
+        let vector_b: Vec<f32> = (0..size).map(|i| (i as f32 * 0.1).cos()).collect();
+        
+        // Benchmark L2 squared distance
+        c.bench_function(&format!("l2_squared_scalar_{}", size), |b| {
+            b.iter(|| l2_squared_distance_scalar(black_box(&vector_a), black_box(&vector_b)))
+        });
+        
+        c.bench_function(&format!("l2_squared_dispatch_{}", size), |b| {
+            b.iter(|| l2_squared_distance_dispatch(black_box(&vector_a), black_box(&vector_b)))
+        });
+        
+        c.bench_function(&format!("l2_squared_simd_{}", size), |b| {
+            b.iter(|| l2_squared_distance_simd(black_box(&vector_a), black_box(&vector_b)))
+        });
+        
+        // Benchmark inner product distance
+        c.bench_function(&format!("inner_product_scalar_{}", size), |b| {
+            b.iter(|| inner_product_distance_scalar(black_box(&vector_a), black_box(&vector_b)))
+        });
+        
+        c.bench_function(&format!("inner_product_dispatch_{}", size), |b| {
+            b.iter(|| inner_product_distance_dispatch(black_box(&vector_a), black_box(&vector_b)))
+        });
+        
+        c.bench_function(&format!("inner_product_simd_{}", size), |b| {
+            b.iter(|| inner_product_distance_simd(black_box(&vector_a), black_box(&vector_b)))
+        });
+    }
+    
+    // AVX2-specific benchmarks if available
+    #[cfg(target_arch = "x86_64")]
+    {
+        if is_x86_feature_detected!("avx2") {
+            let vector_a: Vec<f32> = (0..512).map(|i| (i as f32 * 0.1).sin()).collect();
+            let vector_b: Vec<f32> = (0..512).map(|i| (i as f32 * 0.1).cos()).collect();
+            
+            c.bench_function("l2_squared_avx2_512", |b| {
+                b.iter(|| unsafe {
+                    diskann_core::simd::l2_squared_distance_avx2(
+                        black_box(&vector_a), 
+                        black_box(&vector_b)
+                    )
+                })
+            });
+            
+            c.bench_function("inner_product_avx2_512", |b| {
+                b.iter(|| unsafe {
+                    diskann_core::simd::inner_product_distance_avx2(
+                        black_box(&vector_a), 
+                        black_box(&vector_b)
+                    )
+                })
+            });
+        }
+    }
+}
+
+#[cfg(not(feature = "simd"))]
+fn benchmark_simd_functions(_c: &mut Criterion) {
+    // No-op when SIMD is not enabled
+}
+
 criterion_group!(
     benches, 
     benchmark_math_functions,
     benchmark_distance_functions,
     benchmark_utils_functions,
-    benchmark_aligned_allocation
+    benchmark_aligned_allocation,
+    benchmark_simd_functions
 );
 criterion_main!(benches);

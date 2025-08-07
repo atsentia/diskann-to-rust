@@ -4,7 +4,7 @@
 //! approximate nearest neighbor search system.
 
 #![cfg_attr(not(feature = "std"), no_std)]
-#![forbid(unsafe_code)]
+#![cfg_attr(not(feature = "simd"), forbid(unsafe_code))]
 #![deny(warnings)]
 #![warn(missing_docs)]
 
@@ -31,6 +31,10 @@ pub mod utils;
 
 /// Aligned vector allocation macros
 pub mod alignment;
+
+/// SIMD-accelerated distance computations
+#[cfg(feature = "simd")]
+pub mod simd;
 
 pub use error::*;
 
