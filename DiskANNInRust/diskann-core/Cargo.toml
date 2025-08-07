@@ -1,0 +1,36 @@
+[package]
+name = "diskann-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Core data structures and algorithms for DiskANN vector search"
+
+[features]
+default = []
+simd = ["dep:wide"]
+unsafe_opt = []
+wasm = []
+
+[dependencies]
+serde.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+
+# Optional SIMD support
+wide = { workspace = true, optional = true }
+
+[dev-dependencies]
+criterion.workspace = true
+rstest.workspace = true
+
+[[bench]]
+name = "core_benchmarks"
+harness = false
+required-features = []

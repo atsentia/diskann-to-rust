@@ -1,0 +1,37 @@
+[package]
+name = "diskann-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Command-line interface for DiskANN vector search operations"
+
+[features]
+default = []
+simd = ["diskann-impl/simd"]
+unsafe_opt = ["diskann-impl/unsafe_opt"]
+wasm = ["diskann-impl/wasm"]
+
+[dependencies]
+diskann-core = { path = "../diskann-core" }
+diskann-io = { path = "../diskann-io" }
+diskann-traits = { path = "../diskann-traits" }
+diskann-impl = { path = "../diskann-impl" }
+serde.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+clap = { version = "4.4", features = ["derive"] }
+
+[dev-dependencies]
+rstest.workspace = true
+
+[[bin]]
+name = "diskann"
+path = "src/main.rs"

@@ -1,0 +1,26 @@
+[package]
+name = "diskann-traits"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Core traits and interfaces for DiskANN components"
+
+[features]
+default = []
+simd = ["diskann-core/simd"]
+unsafe_opt = ["diskann-core/unsafe_opt"] 
+wasm = ["diskann-core/wasm"]
+
+[dependencies]
+diskann-core = { path = "../diskann-core" }
+serde.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+rstest.workspace = true
