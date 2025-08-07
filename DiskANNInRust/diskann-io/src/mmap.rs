@@ -7,26 +7,27 @@ use std::path::Path;
 use std::fs::File;
 use std::io::Read;
 use anyhow::{Result, Context};
-use diskann_core::utils;
 
 #[cfg(feature = "mmap")]
-use memmap2::Mmap;
+use {diskann_core::utils, memmap2::Mmap};
 
 /// A safe wrapper around memory-mapped data with alignment guarantees
+#[cfg(feature = "mmap")]
 pub struct SafeMmap {
-    #[cfg(feature = "mmap")]
     _mmap: Mmap,
     data: *const u8,
     len: usize,
     alignment: usize,
 }
 
+#[cfg(feature = "mmap")]
 unsafe impl Send for SafeMmap {}
+#[cfg(feature = "mmap")]
 unsafe impl Sync for SafeMmap {}
 
+#[cfg(feature = "mmap")]
 impl SafeMmap {
     /// Create a new memory-mapped file
-    #[cfg(feature = "mmap")]
     pub fn new(file: File) -> Result<Self> {
         let mmap = unsafe {
             memmap2::Mmap::map(&file)
@@ -48,12 +49,6 @@ impl SafeMmap {
             len,
             alignment,
         })
-    }
-    
-    /// Fallback for platforms without mmap support
-    #[cfg(not(feature = "mmap"))]
-    pub fn new(_file: File) -> Result<Self> {
-        compile_error!("Memory mapping not available on this platform. Use buffered I/O instead.");
     }
     
     /// Get a slice of the mapped data with bounds checking
@@ -115,11 +110,11 @@ pub enum MappingStrategy {
 impl MappingStrategy {
     /// Create the best available mapping strategy for a file
     pub fn new<P: AsRef<Path>>(path: P) -> Result<Self> {
-        let file = File::open(path.as_ref())
-            .with_context(|| format!("Failed to open file: {}", path.as_ref().display()))?;
-        
         #[cfg(feature = "mmap")]
         {
+            let file = File::open(path.as_ref())
+                .with_context(|| format!("Failed to open file: {}", path.as_ref().display()))?;
+            
             match SafeMmap::new(file) {
                 Ok(mmap) => {
                     tracing::debug!("Using memory-mapped I/O for {}", path.as_ref().display());
@@ -220,11 +215,9 @@ impl MappingStrategy {
 
 /// Emit compile-time warnings when falling back to buffered I/O
 #[cfg(not(feature = "mmap"))]
-const _: () = {
-    #[deprecated = "Memory mapping is not available on this platform. Using buffered I/O fallback."]
-    fn _mmap_unavailable_warning() {}
-    let _ = _mmap_unavailable_warning;
-};
+fn _warn_mmap_unavailable() {
+    tracing::warn!("Memory mapping is not available on this platform. Using buffered I/O fallback.");
+}
 
 /// Platform-specific information about memory mapping support
 pub fn platform_mmap_info() -> &'static str {

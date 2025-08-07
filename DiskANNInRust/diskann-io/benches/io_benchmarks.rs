@@ -1,7 +1,7 @@
 //! Benchmarks for I/O performance comparison
 
 use criterion::{black_box, criterion_group, criterion_main, Criterion, BenchmarkId};
-use diskann_io::{IndexWriter, IndexLoader, FileIndexWriter, MmapIndexLoader, IndexWriterBuilder, IndexLoaderBuilder};
+use diskann_io::{IndexWriter, IndexLoader, FileIndexWriter, MmapIndexLoader, IndexWriterBuilder};
 use diskann_core::vectors::Vector;
 use tempfile::NamedTempFile;
 use std::time::Duration;

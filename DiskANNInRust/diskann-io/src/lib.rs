@@ -25,7 +25,10 @@ pub mod loader;
 pub use writer::{IndexWriter, FileIndexWriter, IndexWriterBuilder};
 pub use loader::{IndexLoader, MmapIndexLoader, IndexLoaderBuilder, IndexMetadata};
 pub use format::{BinaryHeader, write_vectors_f32, read_vectors_f32, write_graph_nodes, read_graph_nodes};
-pub use mmap::{MappingStrategy, SafeMmap, platform_mmap_info};
+pub use mmap::{MappingStrategy, platform_mmap_info};
+
+#[cfg(feature = "mmap")]
+pub use mmap::SafeMmap;
 
 #[cfg(test)]
 mod tests {

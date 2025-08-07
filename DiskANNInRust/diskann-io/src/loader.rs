@@ -6,7 +6,7 @@ use std::io::BufReader;
 use anyhow::{Result, Context};
 use diskann_core::structures::GraphNode;
 use diskann_core::vectors::{Vector, VectorId};
-use crate::mmap::{MappingStrategy, platform_mmap_info};
+use crate::mmap::{platform_mmap_info};
 use crate::format::{BinaryHeader, read_vectors_f32};
 
 /// Trait for loading indices from persistent storage
@@ -60,16 +60,20 @@ impl MmapIndexLoader {
     
     /// Load vectors using the optimal strategy for the platform
     fn load_vectors_with_strategy<P: AsRef<Path>>(&self, path: P) -> Result<Vec<Vector>> {
+        #[cfg(feature = "mmap")]
         if self.prefer_mmap {
-            self.load_vectors_mmap(path.as_ref())
-        } else {
-            self.load_vectors_buffered(path.as_ref())
+            return self.load_vectors_mmap(path.as_ref());
         }
+        
+        self.load_vectors_buffered(path.as_ref())
     }
     
     /// Load vectors using memory mapping (if available)
     #[cfg(feature = "mmap")]
+    #[allow(dead_code)]
     fn load_vectors_mmap<P: AsRef<Path>>(&self, path: P) -> Result<Vec<Vector>> {
+        use crate::mmap::MappingStrategy;
+        
         let mapping = MappingStrategy::new(path.as_ref())?;
         
         // Read header first
@@ -102,6 +106,7 @@ impl MmapIndexLoader {
     
     /// Fallback for platforms without mmap
     #[cfg(not(feature = "mmap"))]
+    #[allow(dead_code)]
     fn load_vectors_mmap<P: AsRef<Path>>(&self, path: P) -> Result<Vec<Vector>> {
         tracing::warn!("Memory mapping not available, falling back to buffered I/O");
         self.load_vectors_buffered(path)
