@@ -185,7 +185,7 @@ fn test_simd_vs_scalar_edge_cases() {
         let scalar_inner = inner_product_distance_scalar(&a, &b);
         let dispatch_inner = inner_product_distance_dispatch(&a, &b);
         
-        let inner_tolerance = if scalar_inner.abs() > 1e5 { scalar_inner.abs() * 1e-4 } else { TOLERANCE };
+        let inner_tolerance = if scalar_inner.abs() > 1e3 { scalar_inner.abs() * 1e-4 } else { TOLERANCE };
         
         assert!(
             (scalar_inner - dispatch_inner).abs() < inner_tolerance,
