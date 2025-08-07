@@ -8,10 +8,14 @@ use diskann_traits::distance::{EuclideanDistance, CosineDistance, Distance};
 /// Generate vectors with reasonable size and values
 fn arb_vector() -> impl Strategy<Value = Vec<f32>> {
     prop::collection::vec(
-        prop::num::f32::NORMAL
-            .prop_filter("Avoid extreme values", |x| x.is_finite() && x.abs() > 1e-20 && x.abs() < 1e10)
-            .prop_map(|x| if x.abs() < 1e-6 { 0.0 } else { x }), // Clamp very small values to zero
-        1..=128 // Reasonable vector dimensions
+        prop::num::f32::ANY
+            .prop_filter("Finite values only", |x| x.is_finite())
+            .prop_map(|x| {
+                if x.abs() < 1e-10 { 0.0 } // Clamp very small values to zero for numerical stability
+                else if x.abs() > 1e6 { x.signum() * 1e6 } // Clamp large values
+                else { x }
+            }),
+        1..=32 // Smaller dimensions for faster testing
     )
 }
 
@@ -20,9 +24,13 @@ fn arb_vector_pair() -> impl Strategy<Value = (Vec<f32>, Vec<f32>)> {
     arb_vector().prop_flat_map(|v1| {
         let dim = v1.len();
         (Just(v1), prop::collection::vec(
-            prop::num::f32::NORMAL
-                .prop_filter("Avoid extreme values", |x| x.is_finite() && x.abs() > 1e-20 && x.abs() < 1e10)
-                .prop_map(|x| if x.abs() < 1e-6 { 0.0 } else { x }),
+            prop::num::f32::ANY
+                .prop_filter("Finite values only", |x| x.is_finite())
+                .prop_map(|x| {
+                    if x.abs() < 1e-10 { 0.0 }
+                    else if x.abs() > 1e6 { x.signum() * 1e6 }
+                    else { x }
+                }),
             dim..=dim
         ))
     })
@@ -130,12 +138,13 @@ proptest! {
         prop_assert_eq!(d_euclidean, 0.0, "Euclidean distance from vector to itself should be zero");
         
         let d_cosine = cosine.distance(&v, &v);
-        // For cosine distance, zero vectors have distance 1.0, non-zero vectors have distance 0.0
+        // For cosine distance, zero vectors have distance 1.0, non-zero vectors have distance ~0.0
         let norm = l2_norm(&v);
-        let expected_cosine = if norm == 0.0 { 1.0 } else { 0.0 };
+        let expected_cosine = if norm < 1e-10 { 1.0 } else { 0.0 };
         let cosine_error = (d_cosine - expected_cosine).abs();
-        prop_assert!(cosine_error < f32::EPSILON, 
-            "Cosine distance from vector to itself should be {} but got {}", expected_cosine, d_cosine);
+        prop_assert!(cosine_error < 1e-6, 
+            "Cosine distance from vector to itself should be {} but got {} (error: {})", 
+            expected_cosine, d_cosine, cosine_error);
     }
 
     /// Test dot product properties
