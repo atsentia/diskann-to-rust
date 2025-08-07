@@ -31,6 +31,8 @@ rand = "0.8"
 [dev-dependencies]
 criterion.workspace = true
 rstest.workspace = true
+proptest.workspace = true
+loom.workspace = true
 
 [[bench]]
 name = "impl_benchmarks"
