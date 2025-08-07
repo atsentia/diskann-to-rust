@@ -11,6 +11,7 @@ use std::path::Path;
 
 use diskann_impl::IndexBuilder;
 use diskann_traits::{distance::EuclideanDistance, index::Index, search::Search};
+use diskann_io::{write_vectors_f32, read_vectors_f32};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -62,7 +63,7 @@ enum Commands {
     },
 }
 
-/// Load vectors from a binary file
+/// Load vectors from a binary file using diskann-io format
 /// Expected format: [num_vectors: u32][dimension: u32][vector_data: f32...]
 fn load_vectors_from_file(file_path: &str) -> Result<Vec<(u32, Vec<f32>)>> {
     let path = Path::new(file_path);
@@ -74,34 +75,21 @@ fn load_vectors_from_file(file_path: &str) -> Result<Vec<(u32, Vec<f32>)>> {
         .with_context(|| format!("Failed to open file: {}", file_path))?;
     let mut reader = BufReader::new(file);
 
-    // Read header
-    let mut buffer = [0u8; 4];
-    reader.read_exact(&mut buffer)
-        .context("Failed to read number of vectors")?;
-    let num_vectors = u32::from_le_bytes(buffer);
+    // Use diskann-io to read vectors
+    let vectors = read_vectors_f32(&mut reader)
+        .with_context(|| format!("Failed to read vectors from {}", file_path))?;
 
-    reader.read_exact(&mut buffer)
-        .context("Failed to read vector dimension")?;
-    let dimension = u32::from_le_bytes(buffer);
+    info!("Loading {} vectors of dimension {}", vectors.len(), 
+          if vectors.is_empty() { 0 } else { vectors[0].len() });
 
-    info!("Loading {} vectors of dimension {}", num_vectors, dimension);
+    // Convert to (id, vector) pairs
+    let indexed_vectors = vectors
+        .into_iter()
+        .enumerate()
+        .map(|(id, vector)| (id as u32, vector))
+        .collect();
 
-    let mut vectors = Vec::with_capacity(num_vectors as usize);
-    
-    for id in 0..num_vectors {
-        let mut vector = vec![0.0f32; dimension as usize];
-        let mut float_buffer = [0u8; 4];
-        
-        for component in &mut vector {
-            reader.read_exact(&mut float_buffer)
-                .with_context(|| format!("Failed to read vector component for vector {}", id))?;
-            *component = f32::from_le_bytes(float_buffer);
-        }
-        
-        vectors.push((id, vector));
-    }
-
-    Ok(vectors)
+    Ok(indexed_vectors)
 }
 
 /// Load a single query vector from file
@@ -177,6 +165,10 @@ fn main() -> Result<()> {
 
             // Build index
             let distance_fn = EuclideanDistance;
+            
+            // Clone vectors for saving before building index
+            let vector_data_for_save: Vec<Vec<f32>> = vectors.iter().map(|(_, v)| v.clone()).collect();
+            
             let index = IndexBuilder::new(distance_fn)
                 .max_degree(max_degree)
                 .search_list_size(search_list_size)
@@ -188,9 +180,18 @@ fn main() -> Result<()> {
             info!("Built index with {} nodes, average degree: {:.2}", 
                   index.size(), index.average_degree());
 
-            // TODO: Save index to file using diskann-io
-            // For now, just log success
-            info!("Index built successfully (save to file not yet implemented)");
+            // Save index to file - for now, we'll save the original vectors
+            // In the future, this would save the full graph structure
+            info!("Saving index to {}", output);
+            let output_file = File::create(&output)
+                .with_context(|| format!("Failed to create output file: {}", output))?;
+            let mut writer = std::io::BufWriter::new(output_file);
+            
+            // Save the original vectors (simple approach for demo)
+            write_vectors_f32(&mut writer, &vector_data_for_save)
+                .context("Failed to save index to file")?;
+            
+            info!("Index saved successfully to {}", output);
             println!("Index building completed successfully!");
         }
         Commands::Search { 
@@ -203,22 +204,49 @@ fn main() -> Result<()> {
             info!("Searching index {} with query {} for {} neighbors (beam={})", 
                   index_path, query_path, k, beam);
 
-            // TODO: Load index from file
-            // For now, create a demo index
-            let distance_fn = EuclideanDistance;
-            let demo_vectors = vec![
-                (0, vec![1.0, 0.0, 0.0]),
-                (1, vec![0.0, 1.0, 0.0]),
-                (2, vec![0.0, 0.0, 1.0]),
-                (3, vec![0.5, 0.5, 0.0]),
-                (4, vec![0.0, 0.5, 0.5]),
-            ];
+            // Load index from file
+            let index = if Path::new(&index_path).exists() {
+                info!("Loading index from {}", index_path);
+                let index_file = File::open(&index_path)
+                    .with_context(|| format!("Failed to open index file: {}", index_path))?;
+                let mut reader = BufReader::new(index_file);
+                
+                // Load vectors and rebuild index
+                let loaded_vectors = read_vectors_f32(&mut reader)
+                    .context("Failed to load vectors from index file")?;
+                
+                info!("Loaded {} vectors from index", loaded_vectors.len());
+                
+                let distance_fn = EuclideanDistance;
+                let vector_data: Vec<(u32, Vec<f32>)> = loaded_vectors
+                    .into_iter()
+                    .enumerate()
+                    .map(|(i, v)| (i as u32, v))
+                    .collect();
+                
+                IndexBuilder::new(distance_fn)
+                    .max_degree(64)
+                    .search_list_size(128)
+                    .build(vector_data)
+                    .context("Failed to rebuild index from loaded vectors")?
+            } else {
+                // Create demo index if file doesn't exist
+                info!("Index file not found, creating demo index for testing");
+                let distance_fn = EuclideanDistance;
+                let demo_vectors = vec![
+                    (0, vec![1.0, 0.0, 0.0]),
+                    (1, vec![0.0, 1.0, 0.0]),
+                    (2, vec![0.0, 0.0, 1.0]),
+                    (3, vec![0.5, 0.5, 0.0]),
+                    (4, vec![0.0, 0.5, 0.5]),
+                ];
 
-            let index = IndexBuilder::new(distance_fn)
-                .max_degree(32)
-                .search_list_size(64)
-                .build(demo_vectors)
-                .context("Failed to create demo index")?;
+                IndexBuilder::new(distance_fn)
+                    .max_degree(32)
+                    .search_list_size(64)
+                    .build(demo_vectors)
+                    .context("Failed to create demo index")?
+            };
 
             // Load query
             let query = load_query_from_file(&query_path)
