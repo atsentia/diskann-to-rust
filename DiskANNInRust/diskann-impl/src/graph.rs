@@ -1,7 +1,7 @@
 //! Graph-based index implementations with Vamana algorithm
 
 use diskann_core::{DiskAnnResult, vectors::VectorId, structures::GraphNode};
-use diskann_traits::{index::Index, search::{Search, SearchResult}, distance::Distance};
+use diskann_traits::{index::Index, search::{Search, SearchResult, SearchBuffer}, distance::Distance};
 use std::collections::{HashMap, HashSet, BinaryHeap};
 use std::cmp::Ordering;
 use rand::{Rng, SeedableRng};
@@ -130,8 +130,8 @@ impl<D: Distance<f32> + Sync + Send> VamanaIndex<D> {
         Some(best_id)
     }
 
-    /// Greedy search to find nearest neighbors
-    fn greedy_search(&self, query: &[f32], k: usize, start_id: VectorId) -> Vec<Candidate> {
+    /// Enhanced beam search for better quality results
+    fn beam_search(&self, query: &[f32], k: usize, beam_width: usize, start_id: VectorId) -> Vec<Candidate> {
         // Check if start_id exists, if not, find an alternative
         let actual_start_id = if self.nodes.contains_key(&start_id) {
             start_id
@@ -141,6 +141,7 @@ impl<D: Distance<f32> + Sync + Send> VamanaIndex<D> {
             return Vec::new(); // No nodes in the graph
         };
 
+        let effective_beam_width = beam_width.max(k * 2); // Ensure beam is large enough
         let mut visited = HashSet::new();
         let mut candidates = BinaryHeap::new();
         let mut best_candidates = BinaryHeap::new();
@@ -162,7 +163,7 @@ impl<D: Distance<f32> + Sync + Send> VamanaIndex<D> {
         while let Some(current) = candidates.pop() {
             // Check if we should continue exploring
             if let Some(furthest) = best_candidates.peek() {
-                if best_candidates.len() >= self.config.search_list_size && 
+                if best_candidates.len() >= effective_beam_width && 
                    current.distance > furthest.distance {
                     break;
                 }
@@ -187,8 +188,98 @@ impl<D: Distance<f32> + Sync + Send> VamanaIndex<D> {
                             candidates.push(neighbor_candidate.clone());
                             best_candidates.push(neighbor_candidate);
 
-                            // Keep only the best candidates
-                            if best_candidates.len() > self.config.search_list_size {
+                            // Keep only the best candidates within beam width
+                            if best_candidates.len() > effective_beam_width {
+                                best_candidates.pop();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Return top k candidates
+        let mut result: Vec<Candidate> = best_candidates.into_sorted_vec();
+        result.reverse(); // Convert to ascending order by distance
+        result.truncate(k);
+        result
+    }
+
+    /// Zero-allocation beam search using provided buffers
+    fn beam_search_with_buffer(
+        &self, 
+        query: &[f32], 
+        k: usize, 
+        beam_width: usize, 
+        start_id: VectorId,
+        buffer: &mut SearchBuffer,
+    ) -> Vec<Candidate> {
+        // Clear and prepare buffers
+        buffer.clear();
+        buffer.resize_for_nodes(self.nodes.len());
+
+        // Check if start_id exists, if not, find an alternative
+        let actual_start_id = if self.nodes.contains_key(&start_id) {
+            start_id
+        } else if let Some(&first_id) = self.nodes.keys().next() {
+            first_id
+        } else {
+            return Vec::new(); // No nodes in the graph
+        };
+
+        let effective_beam_width = beam_width.max(k * 2);
+        let mut candidates = BinaryHeap::new();
+        let mut best_candidates = BinaryHeap::new();
+
+        // Initialize with start node
+        let start_distance = self.distance_fn.distance(
+            query, 
+            &self.nodes[&actual_start_id].vector
+        );
+        let start_candidate = Candidate {
+            id: actual_start_id,
+            distance: start_distance,
+        };
+        
+        candidates.push(start_candidate.clone());
+        best_candidates.push(start_candidate);
+        
+        // Use visited buffer instead of HashSet for zero allocation
+        if let Some(visited_slot) = buffer.visited.get_mut(actual_start_id as usize) {
+            *visited_slot = true;
+        }
+
+        while let Some(current) = candidates.pop() {
+            // Check if we should continue exploring
+            if let Some(furthest) = best_candidates.peek() {
+                if best_candidates.len() >= effective_beam_width && 
+                   current.distance > furthest.distance {
+                    break;
+                }
+            }
+
+            // Explore neighbors
+            if let Some(node) = self.nodes.get(&current.id) {
+                for &neighbor_id in &node.neighbors {
+                    let neighbor_idx = neighbor_id as usize;
+                    if neighbor_idx < buffer.visited.len() && !buffer.visited[neighbor_idx] {
+                        buffer.visited[neighbor_idx] = true;
+                        
+                        if let Some(neighbor_node) = self.nodes.get(&neighbor_id) {
+                            let distance = self.distance_fn.distance(
+                                query, 
+                                &neighbor_node.vector
+                            );
+                            let neighbor_candidate = Candidate {
+                                id: neighbor_id,
+                                distance,
+                            };
+
+                            candidates.push(neighbor_candidate.clone());
+                            best_candidates.push(neighbor_candidate);
+
+                            // Keep only the best candidates within beam width
+                            if best_candidates.len() > effective_beam_width {
                                 best_candidates.pop();
                             }
                         }
@@ -277,8 +368,8 @@ impl<D: Distance<f32> + Sync + Send> VamanaIndex<D> {
             self.nodes.keys().next().cloned().unwrap()
         });
 
-        // Search for nearest neighbors
-        let candidates = self.greedy_search(&vector, self.config.search_list_size, start_id);
+        // Search for nearest neighbors using default beam width from config
+        let candidates = self.beam_search(&vector, self.config.search_list_size, self.config.search_list_size, start_id);
         
         // Prune to get the actual neighbors
         let neighbors = self.robust_prune(&candidates, self.config.alpha);
@@ -372,7 +463,7 @@ impl<D: Distance<f32> + Sync + Send> VamanaIndex<D> {
                     
                     if !other_neighbors.is_empty() {
                         let start_id = self.start_node.unwrap_or(other_neighbors[0]);
-                        let candidates = self.greedy_search(&neighbor_vector, self.config.search_list_size, start_id);
+                        let candidates = self.beam_search(&neighbor_vector, self.config.search_list_size, self.config.search_list_size, start_id);
                         let new_connections = self.robust_prune(&candidates, self.config.alpha);
                         
                         if let Some(neighbor_node_mut) = self.nodes.get_mut(&neighbor_id) {
@@ -505,7 +596,67 @@ impl<D: Distance<f32> + Sync + Send> Search<f32> for VamanaIndex<D> {
             self.nodes.keys().next().cloned().unwrap()
         };
 
-        let candidates = self.greedy_search(query, k, start_id);
+        let candidates = self.beam_search(query, k, self.config.search_list_size, start_id);
+        
+        let results = candidates.into_iter()
+            .map(|candidate| SearchResult {
+                id: candidate.id,
+                distance: candidate.distance,
+            })
+            .collect();
+
+        Ok(results)
+    }
+
+    fn search_with_beam(&self, query: &[f32], k: usize, beam_width: usize) -> DiskAnnResult<Vec<SearchResult>> {
+        if self.nodes.is_empty() {
+            return Ok(Vec::new());
+        }
+
+        let start_id = if let Some(start) = self.start_node {
+            if self.nodes.contains_key(&start) {
+                start
+            } else {
+                self.nodes.keys().next().cloned().unwrap()
+            }
+        } else {
+            self.nodes.keys().next().cloned().unwrap()
+        };
+
+        let candidates = self.beam_search(query, k, beam_width, start_id);
+        
+        let results = candidates.into_iter()
+            .map(|candidate| SearchResult {
+                id: candidate.id,
+                distance: candidate.distance,
+            })
+            .collect();
+
+        Ok(results)
+    }
+
+    fn search_with_buffer(
+        &self,
+        query: &[f32],
+        k: usize,
+        beam_width: usize,
+        buffer: &mut SearchBuffer,
+    ) -> DiskAnnResult<Vec<SearchResult>> {
+        if self.nodes.is_empty() {
+            return Ok(Vec::new());
+        }
+
+        let start_id = if let Some(start) = self.start_node {
+            if self.nodes.contains_key(&start) {
+                start
+            } else {
+                self.nodes.keys().next().cloned().unwrap()
+            }
+        } else {
+            self.nodes.keys().next().cloned().unwrap()
+        };
+
+        let candidates = self.beam_search_with_buffer(query, k, beam_width, start_id, buffer);
         
         let results = candidates.into_iter()
             .map(|candidate| SearchResult {
