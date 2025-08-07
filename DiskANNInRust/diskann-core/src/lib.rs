@@ -1,4 +1,47 @@
-//! Core data structures and algorithms for DiskANN vector search
+//! # DiskANN Core Library
+//! 
+//! This crate provides the fundamental building blocks for the DiskANN vector search implementation,
+//! including SIMD-optimized distance functions, memory-aligned data structures, and core algorithms.
+//! 
+//! ## Key Features
+//! 
+//! - **SIMD-optimized distance calculations** for high performance
+//! - **Memory-aligned data structures** for cache efficiency  
+//! - **Zero-cost abstractions** with compile-time optimizations
+//! - **Comprehensive testing** with property-based validation
+//! 
+//! ## Basic Usage
+//! 
+//! ```rust
+//! use diskann_core::math::{dot_product, normalize};
+//! 
+//! // Calculate dot product between two vectors
+//! let a = [1.0, 2.0, 3.0];
+//! let b = [4.0, 5.0, 6.0];
+//! let dot = dot_product(&a, &b);
+//! 
+//! // Normalize a vector to unit length
+//! let mut vector = [3.0f32, 4.0f32, 0.0f32];
+//! normalize(&mut vector);
+//! let norm_squared = vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2];
+//! assert!((norm_squared - 1.0f32).abs() < 1e-6);
+//! ```
+//! 
+//! ## SIMD Optimization Example
+//! 
+//! ```rust
+//! # fn main() -> Result<(), Box<dyn std::error::Error>> {
+//! use diskann_core::math::dot_product;
+//! 
+//! // Standard usage automatically selects SIMD when available
+//! let query = vec![1.0; 128];
+//! let candidate = vec![2.0; 128];
+//! 
+//! let dot = dot_product(&query, &candidate);
+//! println!("Dot product: {}", dot);
+//! # Ok(())
+//! # }
+//! ```
 //!
 //! This crate provides the fundamental building blocks for the DiskANN
 //! approximate nearest neighbor search system.

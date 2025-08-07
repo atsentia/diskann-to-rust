@@ -21,8 +21,20 @@ authors = ["DiskANN Rust Port Working Group"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/atsentia/diskann-to-rust"
 homepage = "https://github.com/atsentia/diskann-to-rust"
-keywords = ["ann", "nearest-neighbor", "vector-search", "simd"]
-categories = ["algorithms", "data-structures", "science"]
+documentation = "https://docs.rs/diskann-impl"
+readme = "README.md"
+description = "High-performance Rust implementation of the DiskANN approximate nearest neighbor search algorithm"
+keywords = ["ann", "nearest-neighbor", "vector-search", "simd", "approximate-search"]
+categories = ["algorithms", "data-structures", "science", "mathematics"]
+exclude = [
+    ".github/",
+    "target/",
+    "docs/book/",
+    "perf_reports/",
+    "release/",
+    "*.tmp",
+    "*.log"
+]
 
 [workspace.dependencies]
 # Core dependencies that will be shared across crates

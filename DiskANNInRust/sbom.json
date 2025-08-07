@@ -1,0 +1,3409 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "creationInfo": {
+    "created": "2025-08-07T12:50:36Z",
+    "creators": [
+      "Tool: cargo-sbom-v0.10.0"
+    ]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://spdx.org/spdxdocs/DiskANNInRust-83a4c6dd-8ef3-4306-b188-73334219cfb0",
+  "files": [
+    {
+      "SPDXID": "SPDXRef-File-diskann",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "2fb01c9b22755cb1f083ebc2d53fe15e968d8267"
+        }
+      ],
+      "fileName": "./Cargo.lock",
+      "fileTypes": [
+        "SOURCE",
+        "TEXT"
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-diskann_core",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "2fb01c9b22755cb1f083ebc2d53fe15e968d8267"
+        }
+      ],
+      "fileName": "./Cargo.lock",
+      "fileTypes": [
+        "SOURCE",
+        "TEXT"
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-diskann_impl",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "2fb01c9b22755cb1f083ebc2d53fe15e968d8267"
+        }
+      ],
+      "fileName": "./Cargo.lock",
+      "fileTypes": [
+        "SOURCE",
+        "TEXT"
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-diskann_io",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "2fb01c9b22755cb1f083ebc2d53fe15e968d8267"
+        }
+      ],
+      "fileName": "./Cargo.lock",
+      "fileTypes": [
+        "SOURCE",
+        "TEXT"
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-File-diskann_traits",
+      "checksums": [
+        {
+          "algorithm": "SHA1",
+          "checksumValue": "2fb01c9b22755cb1f083ebc2d53fe15e968d8267"
+        }
+      ],
+      "fileName": "./Cargo.lock",
+      "fileTypes": [
+        "SOURCE",
+        "TEXT"
+      ]
+    }
+  ],
+  "name": "DiskANNInRust",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-criterion-plot-0.5.0",
+      "description": "Criterion's plotting library",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/criterion-plot@0.5.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "criterion-plot",
+      "versionInfo": "0.5.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows-targets-0.53.3",
+      "description": "Import libs for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows-targets@0.53.3",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows-targets",
+      "versionInfo": "0.53.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wasm-bindgen-macro-0.2.100",
+      "description": "Definition of the `#[wasm_bindgen]` attribute, an internal dependency\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/wasm-bindgen-macro@0.2.100",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rustwasm.github.io/wasm-bindgen/",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "wasm-bindgen-macro",
+      "versionInfo": "0.2.100"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-winapi-util-0.1.9",
+      "description": "A dumping ground for high level safe wrappers over windows-sys.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/winapi-util@0.1.9",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/BurntSushi/winapi-util",
+      "licenseConcluded": "Unlicense OR MIT",
+      "licenseDeclared": "Unlicense OR MIT",
+      "name": "winapi-util",
+      "versionInfo": "0.1.9"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anes-0.1.6",
+      "description": "ANSI Escape Sequences provider & parser",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/anes@0.1.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "anes",
+      "versionInfo": "0.1.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--i686--gnu-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_i686_gnu@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_i686_gnu",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-rand-0.8.5",
+      "description": "Random number generators and other randomness functionality.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/rand@0.8.5",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rust-random.github.io/book",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "rand",
+      "versionInfo": "0.8.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-cast-0.3.0",
+      "description": "Ergonomic, checked cast functions for primitive types",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/cast@0.3.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "cast",
+      "versionInfo": "0.3.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-oorandom-11.1.5",
+      "description": "A tiny, robust PRNG implementation.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/oorandom@11.1.5",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "oorandom",
+      "versionInfo": "11.1.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-memmap2-0.9.7",
+      "description": "Cross-platform Rust API for memory-mapped file IO",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/memmap2@0.9.7",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "memmap2",
+      "versionInfo": "0.9.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-clap--derive-4.5.41",
+      "description": "Parse command line argument by defining a struct, derive crate.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/clap_derive@4.5.41",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "clap_derive",
+      "versionInfo": "4.5.41"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diskann-cli-0.1.0",
+      "description": "Command-line interface for DiskANN vector search operations",
+      "downloadLocation": "NONE",
+      "homepage": "https://github.com/atsentia/diskann-to-rust",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "diskann-cli",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-utf8parse-0.2.2",
+      "description": "Table-driven UTF-8 parser",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/utf8parse@0.2.2",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0 OR MIT",
+      "licenseDeclared": "Apache-2.0 OR MIT",
+      "name": "utf8parse",
+      "versionInfo": "0.2.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-overload-0.1.1",
+      "description": "Provides a macro to simplify operator overloading.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/overload@0.1.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "overload",
+      "versionInfo": "0.1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-smallvec-1.15.1",
+      "description": "'Small vector' optimization: store up to a small number of items on the stack",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/smallvec@1.15.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "smallvec",
+      "versionInfo": "1.15.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-libc-0.2.174",
+      "description": "Raw FFI bindings to platform libraries like libc.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/libc@0.2.174",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "libc",
+      "versionInfo": "0.2.174"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--aarch64--msvc-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_aarch64_msvc@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_aarch64_msvc",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diskann-ffi-0.1.0",
+      "description": "C Foreign Function Interface for DiskANN vector search library",
+      "downloadLocation": "NONE",
+      "homepage": "https://github.com/atsentia/diskann-to-rust",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "diskann-ffi",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-crunchy-0.2.4",
+      "description": "Crunchy unroller: deterministically unroll constant loops",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/crunchy@0.2.4",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/eira-fransham/crunchy",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "crunchy",
+      "versionInfo": "0.2.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-criterion-0.5.1",
+      "description": "Statistics-driven micro-benchmarking library",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/criterion@0.5.1",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://bheisler.github.io/criterion.rs/book/index.html",
+      "licenseConcluded": "Apache-2.0 OR MIT",
+      "licenseDeclared": "Apache-2.0 OR MIT",
+      "name": "criterion",
+      "versionInfo": "0.5.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tracing-log-0.2.0",
+      "description": "Provides compatibility between `tracing` and the `log` crate.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/tracing-log@0.2.0",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://tokio.rs",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "tracing-log",
+      "versionInfo": "0.2.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--i686--msvc-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_i686_msvc@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_i686_msvc",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tracing-subscriber-0.3.19",
+      "description": "Utilities for implementing and composing `tracing` subscribers.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/tracing-subscriber@0.3.19",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://tokio.rs",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "tracing-subscriber",
+      "versionInfo": "0.3.19"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-memchr-2.7.5",
+      "description": "Provides extremely fast (uses SIMD on x86_64, aarch64 and wasm32) routines for\n1, 2 or 3 byte search and single substring search.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/memchr@2.7.5",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/BurntSushi/memchr",
+      "licenseConcluded": "Unlicense OR MIT",
+      "licenseDeclared": "Unlicense OR MIT",
+      "name": "memchr",
+      "versionInfo": "2.7.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-rand--chacha-0.3.1",
+      "description": "ChaCha random number generator\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/rand_chacha@0.3.1",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rust-random.github.io/book",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "rand_chacha",
+      "versionInfo": "0.3.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anstyle-parse-0.2.7",
+      "description": "Parse ANSI Style Escapes",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/anstyle-parse@0.2.7",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "anstyle-parse",
+      "versionInfo": "0.2.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--x86--64--gnu-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_x86_64_gnu@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_x86_64_gnu",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-bytemuck-1.23.1",
+      "description": "A crate for mucking around with piles of bytes.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/bytemuck@1.23.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Zlib OR Apache-2.0 OR MIT",
+      "licenseDeclared": "Zlib OR Apache-2.0 OR MIT",
+      "name": "bytemuck",
+      "versionInfo": "1.23.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lazy--static-1.5.0",
+      "description": "A macro for declaring lazily evaluated statics in Rust.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/lazy_static@1.5.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "lazy_static",
+      "versionInfo": "1.5.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-half-2.6.0",
+      "description": "Half-precision floating point f16 and bf16 types for Rust implementing the IEEE 754-2008 standard binary16 and bfloat16 types.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/half@2.6.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "half",
+      "versionInfo": "2.6.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--x86--64--gnullvm-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_x86_64_gnullvm@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_x86_64_gnullvm",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ciborium-ll-0.2.2",
+      "description": "Low-level CBOR codec primitives",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/ciborium-ll@0.2.2",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/enarx/ciborium",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "name": "ciborium-ll",
+      "versionInfo": "0.2.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-nu-ansi-term-0.46.0",
+      "description": "Library for ANSI terminal colors and styles (bold, underline)",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/nu-ansi-term@0.46.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "nu-ansi-term",
+      "versionInfo": "0.46.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ryu-1.0.20",
+      "description": "Fast floating point to string conversion",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/ryu@1.0.20",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0 OR BSL-1.0",
+      "licenseDeclared": "Apache-2.0 OR BSL-1.0",
+      "name": "ryu",
+      "versionInfo": "1.0.20"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-cfg-if-1.0.1",
+      "description": "A macro to ergonomically define an item depending on a large number of #[cfg]\nparameters. Structured like an if-else chain, the first matching branch is the\nitem that gets emitted.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/cfg-if@1.0.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "cfg-if",
+      "versionInfo": "1.0.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-heck-0.5.0",
+      "description": "heck is a case conversion library.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/heck@0.5.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "heck",
+      "versionInfo": "0.5.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tracing-core-0.1.34",
+      "description": "Core primitives for application-level tracing.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/tracing-core@0.1.34",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://tokio.rs",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "tracing-core",
+      "versionInfo": "0.1.34"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-serde--derive-1.0.219",
+      "description": "Macros 1.1 implementation of #[derive(Serialize, Deserialize)]",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/serde_derive@1.0.219",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://serde.rs",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "serde_derive",
+      "versionInfo": "1.0.219"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-plotters-svg-0.3.7",
+      "description": "Plotters SVG backend",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/plotters-svg@0.3.7",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://plotters-rs.github.io",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "plotters-svg",
+      "versionInfo": "0.3.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-clap--lex-0.7.5",
+      "description": "Minimal, flexible command line parser",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/clap_lex@0.7.5",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "clap_lex",
+      "versionInfo": "0.7.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wide-0.7.33",
+      "description": "A crate to help you go wide.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/wide@0.7.33",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Zlib OR Apache-2.0 OR MIT",
+      "licenseDeclared": "Zlib OR Apache-2.0 OR MIT",
+      "name": "wide",
+      "versionInfo": "0.7.33"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diskann-io-0.1.0",
+      "description": "I/O operations and file format handling for DiskANN",
+      "downloadLocation": "NONE",
+      "homepage": "https://github.com/atsentia/diskann-to-rust",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "diskann-io",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-winapi-0.3.9",
+      "description": "Raw FFI bindings for all of Windows API.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/winapi@0.3.9",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "winapi",
+      "versionInfo": "0.3.9"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-is--terminal--polyfill-1.70.1",
+      "description": "Polyfill for `is_terminal` stdlib feature for use with older MSRVs",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/is_terminal_polyfill@1.70.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "is_terminal_polyfill",
+      "versionInfo": "1.70.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-matchers-0.1.0",
+      "description": "Regex matching on character and byte streams.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/matchers@0.1.0",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/hawkw/matchers",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "matchers",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ciborium-io-0.2.2",
+      "description": "Simplified Read/Write traits for no_std usage",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/ciborium-io@0.2.2",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/enarx/ciborium",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "name": "ciborium-io",
+      "versionInfo": "0.2.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-proc-macro2-1.0.95",
+      "description": "A substitute implementation of the compiler's `proc_macro` API to decouple token-based libraries from the procedural macro use case.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/proc-macro2@1.0.95",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "proc-macro2",
+      "versionInfo": "1.0.95"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-plotters-backend-0.3.7",
+      "description": "Plotters Backend API",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/plotters-backend@0.3.7",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://plotters-rs.github.io",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "plotters-backend",
+      "versionInfo": "0.3.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-crossbeam-deque-0.8.6",
+      "description": "Concurrent work-stealing deque",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/crossbeam-deque@0.8.6",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/crossbeam-rs/crossbeam/tree/master/crossbeam-deque",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "crossbeam-deque",
+      "versionInfo": "0.8.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--aarch64--msvc-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_aarch64_msvc@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_aarch64_msvc",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-strsim-0.11.1",
+      "description": "Implementations of string similarity metrics. Includes Hamming, Levenshtein,\nOSA, Damerau-Levenshtein, Jaro, Jaro-Winkler, and Sørensen-Dice.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/strsim@0.11.1",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/rapidfuzz/strsim-rs",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "strsim",
+      "versionInfo": "0.11.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-log-0.4.27",
+      "description": "A lightweight logging facade for Rust\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/log@0.4.27",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "log",
+      "versionInfo": "0.4.27"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--x86--64--gnu-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_x86_64_gnu@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_x86_64_gnu",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-rayon-core-1.12.1",
+      "description": "Core APIs for Rayon",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/rayon-core@1.12.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "rayon-core",
+      "versionInfo": "1.12.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-rustversion-1.0.21",
+      "description": "Conditional compilation according to rustc compiler version",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/rustversion@1.0.21",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "rustversion",
+      "versionInfo": "1.0.21"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anstyle-1.0.11",
+      "description": "ANSI text styling",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/anstyle@1.0.11",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "anstyle",
+      "versionInfo": "1.0.11"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-rand--core-0.6.4",
+      "description": "Core random number generator traits and tools for implementation.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/rand_core@0.6.4",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rust-random.github.io/book",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "rand_core",
+      "versionInfo": "0.6.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wasi-0.11.1-plus-wasi-snapshot-preview1",
+      "description": "Experimental WASI API bindings for Rust",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/wasi@0.11.1%2Bwasi-snapshot-preview1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0 OR Apache-2.0 OR MIT",
+      "licenseDeclared": "Apache-2.0 OR Apache-2.0 OR MIT",
+      "name": "wasi",
+      "versionInfo": "0.11.1+wasi-snapshot-preview1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-once--cell--polyfill-1.70.1",
+      "description": "Polyfill for `OnceCell` stdlib feature for use with older MSRVs",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/once_cell_polyfill@1.70.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "once_cell_polyfill",
+      "versionInfo": "1.70.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tracing-0.1.41",
+      "description": "Application-level tracing for Rust.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/tracing@0.1.41",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://tokio.rs",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "tracing",
+      "versionInfo": "0.1.41"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diskann-impl-0.1.0",
+      "description": "Concrete implementations of DiskANN algorithms and data structures",
+      "downloadLocation": "NONE",
+      "homepage": "https://github.com/atsentia/diskann-to-rust",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "diskann-impl",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-colorchoice-1.0.4",
+      "description": "Global override of color control",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/colorchoice@1.0.4",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "colorchoice",
+      "versionInfo": "1.0.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--aarch64--gnullvm-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_aarch64_gnullvm@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_aarch64_gnullvm",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-getrandom-0.2.16",
+      "description": "A small cross-platform library for retrieving random data from system source",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/getrandom@0.2.16",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "getrandom",
+      "versionInfo": "0.2.16"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-sharded-slab-0.1.7",
+      "description": "A lock-free concurrent slab.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/sharded-slab@0.1.7",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/hawkw/sharded-slab",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "sharded-slab",
+      "versionInfo": "0.1.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anyhow-1.0.98",
+      "description": "Flexible concrete Error type built on std::error::Error",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/anyhow@1.0.98",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "anyhow",
+      "versionInfo": "1.0.98"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--aarch64--gnullvm-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_aarch64_gnullvm@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_aarch64_gnullvm",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--i686--msvc-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_i686_msvc@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_i686_msvc",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-web-sys-0.3.77",
+      "description": "Bindings for all Web APIs, a procedurally generated crate from WebIDL\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/web-sys@0.3.77",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rustwasm.github.io/wasm-bindgen/web-sys/index.html",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "web-sys",
+      "versionInfo": "0.3.77"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-either-1.15.0",
+      "description": "The enum `Either` with variants `Left` and `Right` is a general purpose sum type with two cases.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/either@1.15.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "either",
+      "versionInfo": "1.15.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-same-file-1.0.6",
+      "description": "A simple crate for determining whether two file paths point to the same file.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/same-file@1.0.6",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/BurntSushi/same-file",
+      "licenseConcluded": "Unlicense OR MIT",
+      "licenseDeclared": "Unlicense OR MIT",
+      "name": "same-file",
+      "versionInfo": "1.0.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diskann-bench-0.1.0",
+      "description": "Performance benchmarks for DiskANN vector search",
+      "downloadLocation": "NONE",
+      "homepage": "https://github.com/atsentia/diskann-to-rust",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "diskann-bench",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wasm-bindgen-backend-0.2.100",
+      "description": "Backend code generation of the wasm-bindgen tool\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/wasm-bindgen-backend@0.2.100",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rustwasm.github.io/wasm-bindgen/",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "wasm-bindgen-backend",
+      "versionInfo": "0.2.100"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-is-terminal-0.4.16",
+      "description": "Test whether a given stream is a terminal",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/is-terminal@0.4.16",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "is-terminal",
+      "versionInfo": "0.4.16"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anstream-0.6.20",
+      "description": "IO stream adapters for writing colored text that will gracefully degrade according to your terminal's capabilities.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/anstream@0.6.20",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "anstream",
+      "versionInfo": "0.6.20"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-syn-2.0.104",
+      "description": "Parser for Rust source code",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/syn@2.0.104",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "syn",
+      "versionInfo": "2.0.104"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--i686--gnullvm-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_i686_gnullvm@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_i686_gnullvm",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anstyle-query-1.1.4",
+      "description": "Look up colored console capabilities",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/anstyle-query@1.1.4",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "anstyle-query",
+      "versionInfo": "1.1.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-unicode-ident-1.0.18",
+      "description": "Determine whether characters have the XID_Start or XID_Continue properties according to Unicode Standard Annex #31",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/unicode-ident@1.0.18",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "licenseDeclared": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "name": "unicode-ident",
+      "versionInfo": "1.0.18"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-num-traits-0.2.19",
+      "description": "Numeric traits for generic mathematics",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/num-traits@0.2.19",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/rust-num/num-traits",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "num-traits",
+      "versionInfo": "0.2.19"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-js-sys-0.3.77",
+      "description": "Bindings for all JS global objects and functions in all JS environments like\nNode.js and browsers, built on `#[wasm_bindgen]` using the `wasm-bindgen` crate.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/js-sys@0.3.77",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rustwasm.github.io/wasm-bindgen/",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "js-sys",
+      "versionInfo": "0.3.77"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-thiserror-1.0.69",
+      "description": "derive(Error)",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/thiserror@1.0.69",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "thiserror",
+      "versionInfo": "1.0.69"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-regex-syntax-0.6.29",
+      "description": "A regular expression parser.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/regex-syntax@0.6.29",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/rust-lang/regex",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "regex-syntax",
+      "versionInfo": "0.6.29"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-crossbeam-epoch-0.9.18",
+      "description": "Epoch-based garbage collection",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/crossbeam-epoch@0.9.18",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/crossbeam-rs/crossbeam/tree/master/crossbeam-epoch",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "crossbeam-epoch",
+      "versionInfo": "0.9.18"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-itoa-1.0.15",
+      "description": "Fast integer primitive to string conversion",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/itoa@1.0.15",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "itoa",
+      "versionInfo": "1.0.15"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-itertools-0.10.5",
+      "description": "Extra iterator adaptors, iterator methods, free functions, and macros.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/itertools@0.10.5",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "itertools",
+      "versionInfo": "0.10.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-rayon-1.10.0",
+      "description": "Simple work-stealing parallelism for Rust",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/rayon@1.10.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "rayon",
+      "versionInfo": "1.10.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wasm-bindgen-macro-support-0.2.100",
+      "description": "The part of the implementation of the `#[wasm_bindgen]` attribute that is not in the shared backend crate\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/wasm-bindgen-macro-support@0.2.100",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rustwasm.github.io/wasm-bindgen/",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "wasm-bindgen-macro-support",
+      "versionInfo": "0.2.100"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-aho-corasick-1.1.3",
+      "description": "Fast multiple substring searching.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/aho-corasick@1.1.3",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/BurntSushi/aho-corasick",
+      "licenseConcluded": "Unlicense OR MIT",
+      "licenseDeclared": "Unlicense OR MIT",
+      "name": "aho-corasick",
+      "versionInfo": "1.1.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diskann-core-0.1.0",
+      "description": "Core data structures and algorithms for DiskANN vector search",
+      "downloadLocation": "NONE",
+      "homepage": "https://github.com/atsentia/diskann-to-rust",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "diskann-core",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-thread--local-1.1.9",
+      "description": "Per-object thread-local storage",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/thread_local@1.1.9",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "thread_local",
+      "versionInfo": "1.1.9"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-walkdir-2.5.0",
+      "description": "Recursively walk a directory.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/walkdir@2.5.0",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/BurntSushi/walkdir",
+      "licenseConcluded": "Unlicense OR MIT",
+      "licenseDeclared": "Unlicense OR MIT",
+      "name": "walkdir",
+      "versionInfo": "2.5.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wasm-bindgen-shared-0.2.100",
+      "description": "Shared support between wasm-bindgen and wasm-bindgen cli, an internal\ndependency.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/wasm-bindgen-shared@0.2.100",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rustwasm.github.io/wasm-bindgen/",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "wasm-bindgen-shared",
+      "versionInfo": "0.2.100"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows-sys-0.59.0",
+      "description": "Rust for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows-sys@0.59.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows-sys",
+      "versionInfo": "0.59.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--i686--gnu-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_i686_gnu@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_i686_gnu",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-wasm-bindgen-0.2.100",
+      "description": "Easy support for interacting between JS and Rust.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/wasm-bindgen@0.2.100",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://rustwasm.github.io/",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "wasm-bindgen",
+      "versionInfo": "0.2.100"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diskann-traits-0.1.0",
+      "description": "Core traits and interfaces for DiskANN components",
+      "downloadLocation": "NONE",
+      "homepage": "https://github.com/atsentia/diskann-to-rust",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "diskann-traits",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-once--cell-1.21.3",
+      "description": "Single assignment cells and lazy values.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/once_cell@1.21.3",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "once_cell",
+      "versionInfo": "1.21.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-crossbeam-utils-0.8.21",
+      "description": "Utilities for concurrent programming",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/crossbeam-utils@0.8.21",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/crossbeam-rs/crossbeam/tree/master/crossbeam-utils",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "crossbeam-utils",
+      "versionInfo": "0.8.21"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-thiserror-impl-1.0.69",
+      "description": "Implementation detail of the `thiserror` crate",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/thiserror-impl@1.0.69",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "thiserror-impl",
+      "versionInfo": "1.0.69"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zerocopy-derive-0.8.26",
+      "description": "Custom derive for traits from the zerocopy crate",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/zerocopy-derive@0.8.26",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "BSD-2-Clause OR Apache-2.0 OR MIT",
+      "licenseDeclared": "BSD-2-Clause OR Apache-2.0 OR MIT",
+      "name": "zerocopy-derive",
+      "versionInfo": "0.8.26"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-hermit-abi-0.5.2",
+      "description": "Hermit system calls definitions.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/hermit-abi@0.5.2",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "hermit-abi",
+      "versionInfo": "0.5.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anstyle-wincon-3.0.10",
+      "description": "Styling legacy Windows terminals",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/anstyle-wincon@3.0.10",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "anstyle-wincon",
+      "versionInfo": "3.0.10"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows-link-0.1.3",
+      "description": "Linking for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows-link@0.1.3",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows-link",
+      "versionInfo": "0.1.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows-targets-0.52.6",
+      "description": "Import libs for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows-targets@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows-targets",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tinytemplate-1.2.1",
+      "description": "Simple, lightweight template engine",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/tinytemplate@1.2.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0 OR MIT",
+      "licenseDeclared": "Apache-2.0 OR MIT",
+      "name": "tinytemplate",
+      "versionInfo": "1.2.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-valuable-0.1.1",
+      "description": "Object-safe value inspection, used to pass un-typed structured data across trait-object boundaries.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/valuable@0.1.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "valuable",
+      "versionInfo": "0.1.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zerocopy-0.8.26",
+      "description": "Zerocopy makes zero-cost memory manipulation effortless. We write \"unsafe\" so you don't have to.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/zerocopy@0.8.26",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "BSD-2-Clause OR Apache-2.0 OR MIT",
+      "licenseDeclared": "BSD-2-Clause OR Apache-2.0 OR MIT",
+      "name": "zerocopy",
+      "versionInfo": "0.8.26"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-clap--builder-4.5.43",
+      "description": "A simple to use, efficient, and full-featured Command Line Argument Parser",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/clap_builder@4.5.43",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "clap_builder",
+      "versionInfo": "4.5.43"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ciborium-0.2.2",
+      "description": "serde implementation of CBOR using ciborium-basic",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/ciborium@0.2.2",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/enarx/ciborium",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "name": "ciborium",
+      "versionInfo": "0.2.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-plotters-0.3.7",
+      "description": "A Rust drawing library focus on data plotting for both WASM and native applications",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/plotters@0.3.7",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://plotters-rs.github.io/",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "plotters",
+      "versionInfo": "0.3.7"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-pin-project-lite-0.2.16",
+      "description": "A lightweight version of pin-project written with declarative macros.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/pin-project-lite@0.2.16",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0 OR MIT",
+      "licenseDeclared": "Apache-2.0 OR MIT",
+      "name": "pin-project-lite",
+      "versionInfo": "0.2.16"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-winapi-i686-pc-windows-gnu-0.4.0",
+      "description": "Import libraries for the i686-pc-windows-gnu target. Please don't use this crate directly, depend on winapi instead.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/winapi-i686-pc-windows-gnu@0.4.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "winapi-i686-pc-windows-gnu",
+      "versionInfo": "0.4.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-quote-1.0.40",
+      "description": "Quasi-quoting macro quote!(...)",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/quote@1.0.40",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "quote",
+      "versionInfo": "1.0.40"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-regex-1.11.1",
+      "description": "An implementation of regular expressions for Rust. This implementation uses\nfinite automata and guarantees linear time matching on all inputs.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/regex@1.11.1",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/rust-lang/regex",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "regex",
+      "versionInfo": "1.11.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-safe--arch-0.7.4",
+      "description": "Crate that exposes `core::arch` safely via `#[cfg()]`.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/safe_arch@0.7.4",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "Zlib OR Apache-2.0 OR MIT",
+      "licenseDeclared": "Zlib OR Apache-2.0 OR MIT",
+      "name": "safe_arch",
+      "versionInfo": "0.7.4"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-winapi-x86--64-pc-windows-gnu-0.4.0",
+      "description": "Import libraries for the x86_64-pc-windows-gnu target. Please don't use this crate directly, depend on winapi instead.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/winapi-x86_64-pc-windows-gnu@0.4.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "winapi-x86_64-pc-windows-gnu",
+      "versionInfo": "0.4.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ppv-lite86-0.2.21",
+      "description": "Cross-platform cryptography-oriented low-level SIMD library.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/ppv-lite86@0.2.21",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "ppv-lite86",
+      "versionInfo": "0.2.21"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows-sys-0.60.2",
+      "description": "Rust for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows-sys@0.60.2",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows-sys",
+      "versionInfo": "0.60.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-serde--json-1.0.142",
+      "description": "A JSON serialization file format",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/serde_json@1.0.142",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "serde_json",
+      "versionInfo": "1.0.142"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-bumpalo-3.19.0",
+      "description": "A fast bump allocation arena for Rust.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/bumpalo@3.19.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "bumpalo",
+      "versionInfo": "3.19.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-libm-0.2.15",
+      "description": "libm in pure Rust",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/libm@0.2.15",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "libm",
+      "versionInfo": "0.2.15"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--i686--gnullvm-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_i686_gnullvm@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_i686_gnullvm",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--x86--64--msvc-0.52.6",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_x86_64_msvc@0.52.6",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_x86_64_msvc",
+      "versionInfo": "0.52.6"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-regex-syntax-0.8.5",
+      "description": "A regular expression parser.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/regex-syntax@0.8.5",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "regex-syntax",
+      "versionInfo": "0.8.5"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--x86--64--gnullvm-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_x86_64_gnullvm@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_x86_64_gnullvm",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tracing-attributes-0.1.30",
+      "description": "Procedural macro attributes for automatically instrumenting functions.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/tracing-attributes@0.1.30",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://tokio.rs",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "tracing-attributes",
+      "versionInfo": "0.1.30"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-regex-automata-0.1.10",
+      "description": "Automata construction and matching using regular expressions.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/regex-automata@0.1.10",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/BurntSushi/regex-automata",
+      "licenseConcluded": "Unlicense OR MIT",
+      "licenseDeclared": "Unlicense OR MIT",
+      "name": "regex-automata",
+      "versionInfo": "0.1.10"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-regex-automata-0.4.9",
+      "description": "Automata construction and matching using regular expressions.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/regex-automata@0.4.9",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "regex-automata",
+      "versionInfo": "0.4.9"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-clap-4.5.43",
+      "description": "A simple to use, efficient, and full-featured Command Line Argument Parser",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/clap@4.5.43",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "clap",
+      "versionInfo": "4.5.43"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-windows--x86--64--msvc-0.53.0",
+      "description": "Import lib for Windows",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/windows_x86_64_msvc@0.53.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "windows_x86_64_msvc",
+      "versionInfo": "0.53.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-serde-1.0.219",
+      "description": "A generic serialization/deserialization framework",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/serde@1.0.219",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://serde.rs",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "serde",
+      "versionInfo": "1.0.219"
+    }
+  ],
+  "relationships": [
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-ciborium-0.2.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-core-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-ffi-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde--derive-1.0.219"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-crossbeam-utils-0.8.21",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rayon-core-1.12.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-once--cell-1.21.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-core-0.1.34"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-oorandom-11.1.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-safe--arch-0.7.4",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wide-0.7.33"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-core-0.1.34",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-0.1.41"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-web-sys-0.3.77",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-plotters-0.3.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-unicode-ident-1.0.18",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-syn-2.0.104"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-attributes-0.1.30",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-0.1.41"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-impl-0.1.0",
+      "relationshipType": "GENERATED_FROM",
+      "spdxElementId": "SPDXRef-File-diskann_impl"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-traits-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anstyle-1.0.11",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstyle-wincon-3.0.10"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-clap--builder-4.5.43",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap-4.5.43"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-syn-2.0.104",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde--derive-1.0.219"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-sharded-slab-0.1.7",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-zerocopy-derive-0.8.26"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anstyle-1.0.11",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstream-0.6.20"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-half-2.6.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-ciborium-ll-0.2.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-once--cell-1.21.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-js-sys-0.3.77"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-utf8parse-0.2.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstream-0.6.20"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-crunchy-0.2.4",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-half-2.6.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-traits-0.1.0",
+      "relationshipType": "GENERATED_FROM",
+      "spdxElementId": "SPDXRef-File-diskann_traits"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-winapi-util-0.1.9",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-same-file-1.0.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-memchr-2.7.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-automata-0.4.9"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--aarch64--msvc-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-subscriber-0.3.19",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-shared-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-backend-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-0.1.41",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-thiserror-impl-1.0.69",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-thiserror-1.0.69"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-ciborium-0.2.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-strsim-0.11.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--builder-4.5.43"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-bytemuck-1.23.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-safe--arch-0.7.4"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-syn-2.0.104"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-File-diskann_core",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libc-0.2.174",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-is-terminal-0.4.16"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-ciborium-io-0.2.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-ciborium-0.2.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde--json-1.0.142",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libm-0.2.15",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-core-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--x86--64--msvc-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-unicode-ident-1.0.18",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-proc-macro2-1.0.95"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-thiserror-1.0.69",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-traits-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows-targets-0.53.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-sys-0.60.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-thiserror-1.0.69",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-0.1.41",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-num-traits-0.2.19",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-syn-2.0.104"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-clap--derive-4.5.41",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap-4.5.43"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-syn-2.0.104",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-zerocopy-derive-0.8.26"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-regex-syntax-0.8.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-1.11.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-itertools-0.10.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-plot-0.5.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--i686--msvc-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--aarch64--gnullvm-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-zerocopy-derive-0.8.26"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-plotters-backend-0.3.7",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-plotters-0.3.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-0.1.41",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-io-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-core-0.1.34",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-log-0.2.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rand-0.8.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-regex-syntax-0.6.29",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-automata-0.1.10"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-once--cell--polyfill-1.70.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstyle-wincon-3.0.10"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-macro-support-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-log-0.4.27",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-backend-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-pin-project-lite-0.2.16",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-0.1.41"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--i686--msvc-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows-targets-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-sys-0.59.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-core-0.1.0",
+      "relationshipType": "GENERATED_FROM",
+      "spdxElementId": "SPDXRef-File-diskann_core"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-regex-syntax-0.8.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-automata-0.4.9"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-core-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-io-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-io-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-criterion-0.5.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-bench-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-io-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-colorchoice-1.0.4",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstream-0.6.20"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasi-0.11.1-plus-wasi-snapshot-preview1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-getrandom-0.2.16"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-winapi-i686-pc-windows-gnu-0.4.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-winapi-0.3.9"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-memmap2-0.9.7",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-io-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-thiserror-1.0.69",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-io-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-clap-4.5.43",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-getrandom-0.2.16",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rand--core-0.6.4"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rand-0.8.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-bench-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anstream-0.6.20",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--builder-4.5.43"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-traits-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-bench-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-bumpalo-3.19.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-backend-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows-sys-0.59.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-winapi-util-0.1.9"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-shared-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-macro-support-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rayon-1.10.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-bench-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libc-0.2.174",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-memmap2-0.9.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libc-0.2.174",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rand-0.8.5"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-thread--local-1.1.9",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libc-0.2.174",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-getrandom-0.2.16"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rayon-1.10.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-plotters-0.3.7",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-heck-0.5.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--derive-4.5.41"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-plotters-svg-0.3.7",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-plotters-0.3.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-winapi-util-0.1.9",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-walkdir-2.5.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anstyle-query-1.1.4",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstream-0.6.20"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-utf8parse-0.2.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstyle-parse-0.2.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--aarch64--gnullvm-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-matchers-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows-sys-0.60.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstyle-query-1.1.4"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-regex-1.11.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-macro-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-traits-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-cast-0.3.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-plot-0.5.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-core-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-traits-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-quote-1.0.40"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--x86--64--msvc-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde--derive-1.0.219"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-syn-2.0.104",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-backend-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-backend-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-clap-4.5.43",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows-sys-0.59.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-is-terminal-0.4.16"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libc-0.2.174",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-ffi-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-regex-automata-0.4.9",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-1.11.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-walkdir-2.5.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-crossbeam-utils-0.8.21",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-crossbeam-deque-0.8.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-plotters-backend-0.3.7",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-plotters-svg-0.3.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-macro-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-cfg-if-1.0.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-thread--local-1.1.9"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-io-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-ffi-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-num-traits-0.2.19",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-plotters-0.3.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-crossbeam-utils-0.8.21",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-crossbeam-epoch-0.9.18"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-macro-support-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-macro-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-io-0.1.0",
+      "relationshipType": "GENERATED_FROM",
+      "spdxElementId": "SPDXRef-File-diskann_io"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-ciborium-ll-0.2.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-ciborium-0.2.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rustversion-1.0.21",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-nu-ansi-term-0.46.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--i686--gnu-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tinytemplate-1.2.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-core-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-bench-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-overload-0.1.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-nu-ansi-term-0.46.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde--derive-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-itertools-0.10.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-once--cell-1.21.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-ciborium-io-0.2.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-ciborium-ll-0.2.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-aho-corasick-1.1.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-1.11.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-File-diskann_traits",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-hermit-abi-0.5.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-is-terminal-0.4.16"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-thiserror-impl-1.0.69"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wide-0.7.33",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-core-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-core-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--i686--gnu-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-plotters-0.3.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-js-sys-0.3.77"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-crossbeam-deque-0.8.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rayon-core-1.12.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rayon-1.10.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-attributes-0.1.30"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-syn-2.0.104",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--derive-4.5.41"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-ppv-lite86-0.2.21",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rand--chacha-0.3.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-smallvec-1.15.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-core-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-impl-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-ffi-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-log-0.2.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--derive-4.5.41"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anstyle-parse-0.2.7",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstream-0.6.20"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-lazy--static-1.5.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-sharded-slab-0.1.7"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-File-diskann",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anes-0.1.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde--derive-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde-1.0.219"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-clap--lex-0.7.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--builder-4.5.43"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-core-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-impl-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-valuable-0.1.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-core-0.1.34"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-cfg-if-1.0.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-half-2.6.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anyhow-1.0.98",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-backend-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-macro-support-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-once--cell-1.21.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-log-0.2.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--x86--64--gnu-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-syn-2.0.104",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-macro-support-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anyhow-1.0.98",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-io-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--aarch64--msvc-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-memchr-2.7.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde--json-1.0.142"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde--json-1.0.142",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tinytemplate-1.2.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-thiserror-1.0.69",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-core-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-attributes-0.1.30"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-bytemuck-1.23.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wide-0.7.33"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-0.1.41",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-crossbeam-epoch-0.9.18",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-crossbeam-deque-0.8.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-zerocopy-0.8.26",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-ppv-lite86-0.2.21"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-js-sys-0.3.77",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-web-sys-0.3.77"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-core-0.1.34",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--x86--64--gnu-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-memchr-2.7.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-aho-corasick-1.1.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-is--terminal--polyfill-1.70.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstream-0.6.20"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anstyle-1.0.11",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--builder-4.5.43"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rand--chacha-0.3.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rand-0.8.5"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--x86--64--gnullvm-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-same-file-1.0.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-walkdir-2.5.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--x86--64--gnullvm-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-traits-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-io-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-tracing-0.1.41",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-core-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-File-diskann_impl",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows-sys-0.60.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstyle-wincon-3.0.10"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rand--core-0.6.4",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rand-0.8.5"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-cfg-if-1.0.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-getrandom-0.2.16"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-backend-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-wasm-bindgen-0.2.100",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-web-sys-0.3.77"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-once--cell-1.21.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-thiserror-1.0.69",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-traits-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-cli-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-memchr-2.7.5",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-1.11.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-aho-corasick-1.1.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-regex-automata-0.4.9"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-winapi-0.3.9",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-nu-ansi-term-0.46.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-impl-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-bench-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-either-1.15.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-itertools-0.10.5"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-syn-2.0.104",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-thiserror-impl-1.0.69"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anyhow-1.0.98",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-core-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-cli-0.1.0",
+      "relationshipType": "GENERATED_FROM",
+      "spdxElementId": "SPDXRef-File-diskann"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-once--cell-1.21.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-subscriber-0.3.19"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-syn-2.0.104",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-attributes-0.1.30"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-File-diskann_io",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-macro-support-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-cast-0.3.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anstyle-wincon-3.0.10",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-anstream-0.6.20"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--i686--gnullvm-0.52.6",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.52.6"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-either-1.15.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rayon-1.10.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-unicode-ident-1.0.18",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-shared-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-quote-1.0.40",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-thiserror-impl-1.0.69"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-cfg-if-1.0.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-wasm-bindgen-0.2.100"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-is-terminal-0.4.16",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-regex-1.11.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-proc-macro2-1.0.95",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-clap--derive-4.5.41"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rand--core-0.6.4",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rand--chacha-0.3.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows--i686--gnullvm-0.53.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-windows-link-0.1.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-windows-targets-0.53.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-rayon-core-1.12.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-rayon-1.10.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-traits-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-ffi-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anyhow-1.0.98",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-bench-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde--json-1.0.142"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-zerocopy-derive-0.8.26",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-zerocopy-0.8.26"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-regex-automata-0.1.10",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-matchers-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-itoa-1.0.15",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde--json-1.0.142"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-criterion-plot-0.5.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-criterion-0.5.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-diskann-io-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-log-0.4.27",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tracing-log-0.2.0"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-winapi-x86--64-pc-windows-gnu-0.4.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-winapi-0.3.9"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-serde-1.0.219",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-tinytemplate-1.2.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-ryu-1.0.20",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-serde--json-1.0.142"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-anyhow-1.0.98",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-diskann-impl-0.1.0"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}
