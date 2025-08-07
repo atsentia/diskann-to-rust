@@ -12,7 +12,8 @@ categories.workspace = true
 description = "Core traits and interfaces for DiskANN components"
 
 [features]
-default = []
+default = ["std"]
+std = []
 simd = ["diskann-core/simd"]
 unsafe_opt = ["diskann-core/unsafe_opt"] 
 wasm = ["diskann-core/wasm"]

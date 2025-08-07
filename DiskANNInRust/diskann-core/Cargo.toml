@@ -12,7 +12,8 @@ categories.workspace = true
 description = "Core data structures and algorithms for DiskANN vector search"
 
 [features]
-default = []
+default = ["std"]
+std = []
 simd = ["dep:wide"]
 unsafe_opt = []
 wasm = []
@@ -23,12 +24,16 @@ thiserror.workspace = true
 anyhow.workspace = true
 tracing.workspace = true
 
+# Math support for no_std
+libm = "0.2"
+
 # Optional SIMD support
 wide = { workspace = true, optional = true }
 
 [dev-dependencies]
 criterion.workspace = true
 rstest.workspace = true
+diskann-traits = { path = "../diskann-traits" }
 
 [[bench]]
 name = "core_benchmarks"

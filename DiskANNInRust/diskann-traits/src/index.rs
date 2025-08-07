@@ -1,5 +1,8 @@
 //! Index traits
 
+#[cfg(not(feature = "std"))]
+use alloc::vec::Vec;
+
 use diskann_core::{DiskAnnResult, vectors::VectorId};
 
 /// Trait for vector indices

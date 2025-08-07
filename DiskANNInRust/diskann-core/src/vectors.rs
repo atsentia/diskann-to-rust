@@ -1,5 +1,8 @@
 //! Vector operations and distance computations
 
+#[cfg(not(feature = "std"))]
+use alloc::vec::Vec;
+
 /// Basic vector type alias
 pub type Vector = Vec<f32>;
 

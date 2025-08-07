@@ -1,5 +1,8 @@
 //! Search traits
 
+#[cfg(not(feature = "std"))]
+use alloc::vec::Vec;
+
 use diskann_core::{DiskAnnResult, vectors::VectorId};
 
 /// Search result containing vector ID and distance
