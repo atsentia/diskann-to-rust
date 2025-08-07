@@ -9,6 +9,24 @@ pub mod file;
 /// Index serialization and deserialization  
 pub mod serialization;
 
+/// Binary format definitions compatible with C++ DiskANN
+pub mod format;
+
+/// Memory-mapped I/O with safety wrappers
+pub mod mmap;
+
+/// Index writer abstractions
+pub mod writer;
+
+/// Index loader abstractions with mmap support
+pub mod loader;
+
+// Re-export main types for convenience
+pub use writer::{IndexWriter, FileIndexWriter, IndexWriterBuilder};
+pub use loader::{IndexLoader, MmapIndexLoader, IndexLoaderBuilder, IndexMetadata};
+pub use format::{BinaryHeader, write_vectors_f32, read_vectors_f32, write_graph_nodes, read_graph_nodes};
+pub use mmap::{MappingStrategy, SafeMmap, platform_mmap_info};
+
 #[cfg(test)]
 mod tests {
     #[test]
