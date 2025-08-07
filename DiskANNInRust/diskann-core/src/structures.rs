@@ -1,5 +1,8 @@
 //! Basic data structures for DiskANN
 
+#[cfg(not(feature = "std"))]
+use alloc::vec::Vec;
+
 use crate::vectors::{Vector, VectorId};
 use serde::{Deserialize, Serialize};
 
