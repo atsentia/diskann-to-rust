@@ -35,3 +35,11 @@ criterion/
 # Documentation build output
 /book/
 /docs/target/
+
+# Examples artifacts (too large for git)
+/examples/msmarco_passages.bin
+/examples/msmarco_passages.tsv  
+/examples/msmarco.disk.index
+/examples/test_output/
+/examples/test_data/
+/examples/__pycache__/
