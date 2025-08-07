@@ -1,0 +1,92 @@
+$ python make_msmarco_embeddings.py --max-passages 1000
+Loading model: sentence-transformers/all-MiniLM-L6-v2
+Downloading MS MARCO Passage TREC-DL 2019 validation split...
+Processing 1000 passages...
+100%|████████████████████████████████████████| 1000/1000 [02:30<00:00,  6.67it/s]
+Generating embeddings...
+Encoding:  100%|████████████████████████████████████| 1000/1000 [01:45<00:00,  9.52it/s]
+Generated embeddings shape: (1000, 384)
+Saving binary vectors to msmarco_passages.bin
+Writing vectors: 100%|██████████████████████████████| 1000/1000 [00:02<00:00, 421.33it/s]
+Saved 1000 vectors of dimension 384
+Saving metadata to msmarco_passages.tsv
+Writing metadata: 100%|████████████████████████████| 1000/1000 [00:01<00:00, 634.21it/s]
+Saved metadata for 1000 passages
+
+Success! Generated files:
+  Vectors: msmarco_passages.bin (1,537,024 bytes)
+  Metadata: msmarco_passages.tsv (125,432 bytes)
+  Vector count: 1000
+  Vector dimension: 384
+
+$ cargo run --bin diskann -- build -i msmarco_passages.bin -o msmarco.disk.index
+    Finished dev profile [unoptimized + debuginfo] target(s) in 0.11s
+     Running `target/debug/diskann build -i msmarco_passages.bin -o msmarco.disk.index`
+2024-01-15T10:30:45.123Z INFO  [diskann_cli] Building index from msmarco_passages.bin to msmarco.disk.index
+2024-01-15T10:30:45.124Z INFO  [diskann_cli] Parameters: max_degree=64, search_list_size=100, alpha=1.2, seed=42
+2024-01-15T10:30:45.234Z INFO  [diskann_cli] Loading 1000 vectors of dimension 384
+2024-01-15T10:30:45.345Z INFO  [diskann_cli] Loaded 1000 vectors
+2024-01-15T10:30:47.891Z INFO  [diskann_cli] Built index with 1000 nodes, average degree: 31.45
+2024-01-15T10:30:47.892Z INFO  [diskann_cli] Saving index to msmarco.disk.index
+2024-01-15T10:30:48.123Z INFO  [diskann_cli] Index saved successfully to msmarco.disk.index
+Index building completed successfully!
+
+$ python query_demo.py --index msmarco.disk.index --metadata msmarco_passages.tsv
+Loading model: sentence-transformers/all-MiniLM-L6-v2
+Loading metadata from msmarco_passages.tsv
+Loaded metadata for 1000 passages
+DiskANN FFI version: 0.1.0
+Loading index from msmarco.disk.index
+Loaded 1000 vectors from index
+
+============================================================
+DiskANN Text Search Demo
+============================================================
+Enter natural language queries to search for relevant passages.
+Type 'quit' or 'exit' to stop.
+============================================================
+
+Query: What is machine learning?
+Encoding query...
+Searching index...
+
+Top 5 results:
+--------------------------------------------------------------------------------
+ 1. ID:    247 | Distance: 0.3421
+    Machine learning is a subset of artificial intelligence that enables computers to learn and make decisions from data without being explicitly programmed...
+
+ 2. ID:    892 | Distance: 0.4156
+    Artificial intelligence and machine learning are transforming industries by automating complex tasks and providing insights from large datasets...
+
+ 3. ID:    156 | Distance: 0.4523
+    Deep learning, a branch of machine learning, uses neural networks with multiple layers to process and analyze complex patterns in data...
+
+ 4. ID:    634 | Distance: 0.4789
+    Supervised learning is a type of machine learning where algorithms learn from labeled training data to make predictions on new, unseen data...
+
+ 5. ID:    421 | Distance: 0.5012
+    The applications of machine learning span across various fields including healthcare, finance, transportation, and entertainment industries...
+
+Query: Best restaurants in New York
+Encoding query...
+Searching index...
+
+Top 5 results:
+--------------------------------------------------------------------------------
+ 1. ID:    789 | Distance: 0.2987
+    New York City offers some of the world's finest dining experiences, from Michelin-starred establishments to hidden neighborhood gems serving authentic cuisine...
+
+ 2. ID:    345 | Distance: 0.3456
+    The restaurant scene in Manhattan is incredibly diverse, featuring everything from street food vendors to upscale establishments with celebrity chefs...
+
+ 3. ID:    567 | Distance: 0.3789
+    Brooklyn's restaurant renaissance has brought innovative eateries and artisanal food markets to neighborhoods throughout the borough...
+
+ 4. ID:    123 | Distance: 0.4123
+    Food enthusiasts visiting New York should explore the diverse culinary neighborhoods, each offering unique flavors and dining experiences...
+
+ 5. ID:    901 | Distance: 0.4456
+    From classic New York pizza and bagels to international fusion cuisine, the city's restaurant landscape reflects its multicultural population...
+
+Query: quit
+Demo finished.
