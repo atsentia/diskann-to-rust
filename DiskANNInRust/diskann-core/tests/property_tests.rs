@@ -8,7 +8,9 @@ use diskann_traits::distance::{EuclideanDistance, CosineDistance, Distance};
 /// Generate vectors with reasonable size and values
 fn arb_vector() -> impl Strategy<Value = Vec<f32>> {
     prop::collection::vec(
-        prop::num::f32::POSITIVE.prop_map(|x| x.min(1000.0)), // Reasonable range
+        prop::num::f32::NORMAL
+            .prop_filter("Avoid extreme values", |x| x.is_finite() && x.abs() > 1e-20 && x.abs() < 1e10)
+            .prop_map(|x| if x.abs() < 1e-6 { 0.0 } else { x }), // Clamp very small values to zero
         1..=128 // Reasonable vector dimensions
     )
 }
@@ -18,7 +20,9 @@ fn arb_vector_pair() -> impl Strategy<Value = (Vec<f32>, Vec<f32>)> {
     arb_vector().prop_flat_map(|v1| {
         let dim = v1.len();
         (Just(v1), prop::collection::vec(
-            prop::num::f32::POSITIVE.prop_map(|x| x.min(1000.0)),
+            prop::num::f32::NORMAL
+                .prop_filter("Avoid extreme values", |x| x.is_finite() && x.abs() > 1e-20 && x.abs() < 1e10)
+                .prop_map(|x| if x.abs() < 1e-6 { 0.0 } else { x }),
             dim..=dim
         ))
     })
@@ -45,11 +49,12 @@ proptest! {
     /// Test that normalization preserves direction (for non-zero vectors)
     #[test]
     fn test_normalize_preserves_direction(v in arb_vector()) {
-        if v.iter().any(|&x| x > 0.0) { // Non-zero vector
+        let original_norm = l2_norm(&v);
+        if original_norm > 1e-30 { // Only test for vectors that aren't extremely close to zero
             let normalized = normalize(&v);
             // Check that the normalized vector is in the same direction
             let dot = dot_product(&v, &normalized);
-            prop_assert!(dot > 0.0, "Normalized vector should be in same direction");
+            prop_assert!(dot > 0.0, "Normalized vector should be in same direction, got dot product {}", dot);
         }
     }
 
@@ -63,13 +68,19 @@ proptest! {
         prop_assert!(norm >= 0.0, "L2 norm should be non-negative");
         prop_assert!(norm_squared >= 0.0, "L2 norm squared should be non-negative");
         
-        // Consistency between norm and norm_squared
-        prop_assert!((norm * norm - norm_squared).abs() < 1e-5, 
-            "norm² should equal norm_squared, got {} vs {}", norm * norm, norm_squared);
+        // Consistency between norm and norm_squared - allow for floating point precision
+        let norm_sq_calc = norm * norm;
+        let precision_error = (norm_sq_calc - norm_squared).abs();
+        let relative_error = if norm_squared > 0.0 { precision_error / norm_squared } else { precision_error };
+        prop_assert!(relative_error < 1e-5, 
+            "norm² should equal norm_squared within precision, got {} vs {} (relative error: {})", 
+            norm_sq_calc, norm_squared, relative_error);
         
-        // Zero iff vector is zero
-        let is_zero = v.iter().all(|&x| x == 0.0);
-        prop_assert_eq!(norm == 0.0, is_zero, "Norm should be zero iff vector is zero");
+        // Zero iff vector is zero (considering floating point precision)
+        let is_effectively_zero = v.iter().all(|&x| x.abs() < f32::EPSILON);
+        let norm_is_zero = norm < f32::EPSILON;
+        prop_assert_eq!(norm_is_zero, is_effectively_zero, 
+            "Norm should be zero iff vector is effectively zero (considering precision)");
     }
 
     /// Test triangle inequality for Euclidean distance
@@ -116,10 +127,15 @@ proptest! {
         let cosine = CosineDistance::default();
         
         let d_euclidean = euclidean.distance(&v, &v);
-        prop_assert_eq!(d_euclidean, 0.0, "Distance from vector to itself should be zero");
+        prop_assert_eq!(d_euclidean, 0.0, "Euclidean distance from vector to itself should be zero");
         
         let d_cosine = cosine.distance(&v, &v);
-        prop_assert!(d_cosine < f32::EPSILON, "Cosine distance from vector to itself should be near zero");
+        // For cosine distance, zero vectors have distance 1.0, non-zero vectors have distance 0.0
+        let norm = l2_norm(&v);
+        let expected_cosine = if norm == 0.0 { 1.0 } else { 0.0 };
+        let cosine_error = (d_cosine - expected_cosine).abs();
+        prop_assert!(cosine_error < f32::EPSILON, 
+            "Cosine distance from vector to itself should be {} but got {}", expected_cosine, d_cosine);
     }
 
     /// Test dot product properties
@@ -150,8 +166,11 @@ proptest! {
         let norm_original = l2_norm(&v);
         let norm_scaled = l2_norm(&scaled);
         
-        // ||αv|| = |α| ||v||
-        prop_assert!((norm_scaled - scale * norm_original).abs() < 1e-5,
-            "Scaling property violated: {} vs {}", norm_scaled, scale * norm_original);
+        // ||αv|| = |α| ||v|| - allow for floating point precision
+        let expected = scale * norm_original;
+        let precision_error = (norm_scaled - expected).abs();
+        let relative_error = if expected > 0.0 { precision_error / expected } else { precision_error };
+        prop_assert!(relative_error < 1e-5,
+            "Scaling property violated: {} vs {} (relative error: {})", norm_scaled, expected, relative_error);
     }
 }

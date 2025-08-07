@@ -1,0 +1,290 @@
+name: Nightly Fuzzing
+
+on:
+  schedule:
+    # Run nightly at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      duration_minutes:
+        description: 'Fuzzing duration in minutes'
+        required: false
+        default: '30'
+        type: string
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  fuzz-testing:
+    name: Fuzz Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 120  # 2 hours max
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - fuzz_file_parser
+          - fuzz_search_query
+          - fuzz_vector_ops
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Install Rust nightly
+        uses: dtolnay/rust-toolchain@nightly
+        
+      - name: Install cargo-fuzz
+        run: |
+          cargo install cargo-fuzz
+          
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            DiskANNInRust/target
+            DiskANNInRust/fuzz/target
+          key: ${{ runner.os }}-fuzz-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-fuzz-
+            
+      - name: Build fuzz targets
+        working-directory: DiskANNInRust
+        run: |
+          cargo +nightly fuzz build
+          
+      - name: Create corpus directory
+        working-directory: DiskANNInRust
+        run: |
+          mkdir -p fuzz/corpus/${{ matrix.target }}
+          
+      - name: Run fuzzing
+        working-directory: DiskANNInRust
+        timeout-minutes: ${{ github.event.inputs.duration_minutes || 35 }}
+        run: |
+          # Set duration in seconds (default 30 minutes = 1800 seconds)
+          DURATION_MINUTES=${{ github.event.inputs.duration_minutes || '30' }}
+          DURATION_SECONDS=$((DURATION_MINUTES * 60))
+          
+          echo "Running fuzz target ${{ matrix.target }} for ${DURATION_MINUTES} minutes"
+          
+          # Run fuzzing with timeout and capture exit code
+          set +e
+          timeout ${DURATION_SECONDS}s cargo +nightly fuzz run ${{ matrix.target }} \
+            --jobs $(nproc) \
+            -- -max_total_time=${DURATION_SECONDS} \
+               -print_final_stats=1 \
+               -artifact_prefix=fuzz/artifacts/${{ matrix.target }}/
+          EXIT_CODE=$?
+          set -e
+          
+          # Exit code 124 means timeout (expected), anything else is a problem
+          if [ $EXIT_CODE -eq 124 ]; then
+            echo "Fuzzing completed successfully (timeout reached)"
+          elif [ $EXIT_CODE -eq 0 ]; then
+            echo "Fuzzing completed successfully"
+          else
+            echo "Fuzzing failed with exit code $EXIT_CODE"
+            exit $EXIT_CODE
+          fi
+          
+      - name: Check for crashes
+        working-directory: DiskANNInRust
+        id: check_crashes
+        run: |
+          CRASH_COUNT=0
+          if [ -d "fuzz/artifacts/${{ matrix.target }}" ]; then
+            CRASH_COUNT=$(find fuzz/artifacts/${{ matrix.target }} -name "crash-*" -o -name "leak-*" -o -name "timeout-*" | wc -l)
+          fi
+          echo "crash_count=$CRASH_COUNT" >> $GITHUB_OUTPUT
+          echo "Found $CRASH_COUNT crashes/issues for ${{ matrix.target }}"
+          
+      - name: Upload crash artifacts
+        if: steps.check_crashes.outputs.crash_count > 0
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-crashes-${{ matrix.target }}-${{ github.run_number }}
+          path: DiskANNInRust/fuzz/artifacts/${{ matrix.target }}/
+          retention-days: 30
+          
+      - name: Upload corpus
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzz-corpus-${{ matrix.target }}-${{ github.run_number }}
+          path: DiskANNInRust/fuzz/corpus/${{ matrix.target }}/
+          retention-days: 7
+          
+      - name: Create crash report
+        if: steps.check_crashes.outputs.crash_count > 0
+        working-directory: DiskANNInRust
+        run: |
+          echo "# Fuzz Crash Report - ${{ matrix.target }}" > crash_report.md
+          echo "" >> crash_report.md
+          echo "**Target:** ${{ matrix.target }}" >> crash_report.md
+          echo "**Run ID:** ${{ github.run_number }}" >> crash_report.md
+          echo "**Date:** $(date -u)" >> crash_report.md
+          echo "**Crashes Found:** ${{ steps.check_crashes.outputs.crash_count }}" >> crash_report.md
+          echo "" >> crash_report.md
+          echo "## Crash Files" >> crash_report.md
+          find fuzz/artifacts/${{ matrix.target }} -name "crash-*" -o -name "leak-*" -o -name "timeout-*" | head -10 | while read file; do
+            echo "- $(basename "$file")" >> crash_report.md
+          done
+          cat crash_report.md
+          
+      - name: Fail job if crashes found
+        if: steps.check_crashes.outputs.crash_count > 0
+        run: |
+          echo "::error::Found ${{ steps.check_crashes.outputs.crash_count }} crashes in ${{ matrix.target }}"
+          exit 1
+
+  # Loom stress testing job
+  loom-testing:
+    name: Loom Concurrent Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Install Rust nightly
+        uses: dtolnay/rust-toolchain@nightly
+        
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            DiskANNInRust/target
+          key: ${{ runner.os }}-loom-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-loom-
+            
+      - name: Run loom tests
+        working-directory: DiskANNInRust
+        env:
+          RUSTFLAGS: "--cfg loom"
+          LOOM_MAX_PREEMPTIONS: 3
+          LOOM_MAX_BRANCHES: 10000
+        run: |
+          echo "Running loom concurrent tests..."
+          cargo test --test loom_tests --features="" -- --nocapture
+          
+  # Miri testing for undefined behavior
+  miri-testing:
+    name: Miri Testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Install Rust nightly
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: miri
+          
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            DiskANNInRust/target
+          key: ${{ runner.os }}-miri-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-miri-
+            
+      - name: Run Miri tests
+        working-directory: DiskANNInRust
+        env:
+          MIRIFLAGS: "-Zmiri-strict-provenance -Zmiri-symbolic-alignment-check"
+        run: |
+          echo "Running Miri tests with strict checks..."
+          cargo +nightly miri test --lib --tests
+          
+  # Coverage analysis
+  coverage-analysis:
+    name: Coverage Analysis  
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Install Rust nightly
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: llvm-tools-preview
+          
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@cargo-llvm-cov
+        
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            DiskANNInRust/target
+          key: ${{ runner.os }}-coverage-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-coverage-
+            
+      - name: Generate coverage report
+        working-directory: DiskANNInRust
+        run: |
+          cargo llvm-cov --all-features --workspace --lcov --output-path lcov.info
+          
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: DiskANNInRust/lcov.info
+          fail_ci_if_error: false
+          
+      - name: Check coverage threshold
+        working-directory: DiskANNInRust
+        run: |
+          # Extract coverage percentage
+          COVERAGE=$(cargo llvm-cov --all-features --workspace --summary-only | grep -o '[0-9]\+\.[0-9]\+%' | head -1 | sed 's/%//')
+          echo "Current coverage: ${COVERAGE}%"
+          
+          # Check if coverage meets 90% threshold
+          if (( $(echo "$COVERAGE >= 90.0" | bc -l) )); then
+            echo "✅ Coverage threshold met: ${COVERAGE}% >= 90%"
+          else
+            echo "❌ Coverage below threshold: ${COVERAGE}% < 90%"
+            echo "::warning::Coverage is ${COVERAGE}%, below the 90% target"
+          fi
+
+  # Summary job
+  fuzz-summary:
+    name: Fuzzing Summary
+    runs-on: ubuntu-latest
+    needs: [fuzz-testing, loom-testing, miri-testing, coverage-analysis]
+    if: always()
+    
+    steps:
+      - name: Check results
+        run: |
+          echo "## Nightly Fuzzing Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Fuzz Testing:** ${{ needs.fuzz-testing.result }}" >> $GITHUB_STEP_SUMMARY  
+          echo "- **Loom Testing:** ${{ needs.loom-testing.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Miri Testing:** ${{ needs.miri-testing.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Coverage Analysis:** ${{ needs.coverage-analysis.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [[ "${{ needs.fuzz-testing.result }}" == "failure" ]]; then
+            echo "⚠️ **Crashes detected during fuzzing!** Check artifacts for details." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ No crashes found during fuzzing." >> $GITHUB_STEP_SUMMARY
+          fi
