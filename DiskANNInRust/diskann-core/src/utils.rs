@@ -214,6 +214,25 @@ pub const fn leading_zeros(mut x: u64) -> Option<u32> {
     Some(count)
 }
 
+/// Get the alignment of a memory address
+///
+/// Returns the largest power of 2 that the address is aligned to.
+///
+/// # Examples
+/// ```
+/// use diskann_core::utils::get_alignment;
+/// 
+/// assert_eq!(get_alignment(8), 8);  // 8 is 8-byte aligned
+/// assert_eq!(get_alignment(12), 4); // 12 is 4-byte aligned  
+/// assert_eq!(get_alignment(7), 1);  // 7 is only 1-byte aligned
+/// ```
+pub fn get_alignment(addr: usize) -> usize {
+    if addr == 0 {
+        return usize::MAX; // technically aligned to any boundary
+    }
+    1 << addr.trailing_zeros()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -317,5 +336,14 @@ mod tests {
         assert_eq!(leading_zeros(2), Some(62));
         assert_eq!(leading_zeros(4), Some(61));
         assert_eq!(leading_zeros(8), Some(60));
+    }
+    
+    #[test]
+    fn test_get_alignment() {
+        assert_eq!(get_alignment(8), 8);  // 8 is 8-byte aligned
+        assert_eq!(get_alignment(12), 4); // 12 is 4-byte aligned  
+        assert_eq!(get_alignment(7), 1);  // 7 is only 1-byte aligned
+        assert_eq!(get_alignment(16), 16); // 16 is 16-byte aligned
+        assert_eq!(get_alignment(0), usize::MAX); // 0 is aligned to any boundary
     }
 }
